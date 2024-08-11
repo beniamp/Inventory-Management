@@ -74,8 +74,10 @@ product_total_volume = filtered_df.groupby('ProductColorNameS').size().reset_ind
 # Here we assume 'Availability' column contains max availability values for each product
 product_max_availability = df.groupby('ProductColorNameS')['Availability'].max().reset_index(name='MaxAvailability')
 
-# Merge these two DataFrames on 'ProductColorNameS'
+# Merge these two DataFrames on 'ProductColorNameS' (Whole)
 product_data = pd.merge(product_total_volume, product_max_availability, on='ProductColorNameS')
+# Merge these two DataFrames on 'ProductColorNameS' (Brown)
+product_data2 = pd.merge(product_total_volume, product_max_availability, on='ProductColorNameS')
 
 # Define restock number
 restock_number = 2
@@ -95,13 +97,14 @@ def determine_action_status(restock_point):
         return "Green"
 
 # Apply the function to determine action status
-product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
-
+product_data2['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
+product_data2 = product_data2[product_data2['ActionStatus'] == 'Brown']
 
 
 # Display the filtered data with the custom table outline
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 
 st.write(product_data)
+st.write(product_data2)
 
 st.write(f"Number of dates between selected range: {count_dates}")
