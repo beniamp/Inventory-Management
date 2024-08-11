@@ -84,9 +84,13 @@ restock_number = 2
 
 # Calculate the restock point
 product_data['RestockPoint'] = (product_data['MaxAvailability'] / (2 * (count_dates / product_data['TotalVolume'])))
+test1= (count_dates / product_data['TotalVolume'])
+test2= (2 * (count_dates / product_data['TotalVolume']))
 
 # Display the filtered data and count
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 st.write(product_data)
 
 st.write(f"Number of dates between selected range: {count_dates}")
+st.write(f"Test 1: {test1}")
+st.write(f"Test 2: {test2}")
