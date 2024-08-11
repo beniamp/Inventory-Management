@@ -71,5 +71,3 @@ st.write(f"Filtered Data from {start_date} to {end_date}:")
 st.write(filtered_data)
 
 st.write(f"Number of dates between selected range: {count_dates}")
-
-
