@@ -98,10 +98,10 @@ def determine_action_status(restock_point):
 
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
-product_data2 = product_data[product_data['ActionStatus'] == 'Brown'].reset_index()
-product_data3 = product_data[product_data['ActionStatus'] == 'Red'].reset_index()
-product_data4 = product_data[product_data['ActionStatus'] == 'Orange'].reset_index()
-product_data5 = product_data[product_data['ActionStatus'] == 'Green'].reset_index()
+product_data2 = product_data[product_data['ActionStatus'] == 'Brown'].reset_index(inplace=True)
+product_data3 = product_data[product_data['ActionStatus'] == 'Red'].reset_index(inplace=True)
+product_data4 = product_data[product_data['ActionStatus'] == 'Orange'].reset_index(inplace=True)
+product_data5 = product_data[product_data['ActionStatus'] == 'Green'].reset_index(inplace=True)
 
 
 # Display the filtered data with the custom table outline
