@@ -86,6 +86,19 @@ restock_number = 2
 product_data['RestockPoint'] = round((product_data['MaxAvailability'] / restock_number) * (count_dates / product_data['TotalVolume']))
 
 
+# Calculate the Action Status
+def determine_action_status(value):
+  if value < 1:
+    return 'Brown'
+  elif value == 1:
+    return 'Red'
+  elif value > 1 AND value < restock_number * 2
+    return 'Yellow'
+  else:
+    return 'Green'
+    
+product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
+
 # Display the filtered data and count
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 st.write(product_data)
