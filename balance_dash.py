@@ -97,37 +97,11 @@ def determine_action_status(restock_point):
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
 
-# Add custom CSS for table outline color
-custom_css = """
-<style>
-table {
-    border: 3px solid #3498db; /* Change this to your desired color */
-    border-collapse: collapse;
-}
-
-thead th {
-    border: 3px solid #3498db; /* Change this to your desired color */
-}
-
-tbody td {
-    border: 3px solid #3498db; /* Change this to your desired color */
-}
-</style>
-"""
-
 
 
 # Display the filtered data with the custom table outline
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 
-# Render the CSS in Streamlit
-st.markdown(custom_css, unsafe_allow_html=True)
-
-# Convert DataFrame to HTML with custom class
-table_html = product_data.to_html(classes='custom-table', index=False, escape=False)
-
-# Display the styled table
-st.markdown(table_html, unsafe_allow_html=True)
-
+st.write(product_data)
 
 st.write(f"Number of dates between selected range: {count_dates}")
