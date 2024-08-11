@@ -53,22 +53,18 @@ df = df[df['Date'] != '0000-00-00']
 df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 
 
-# Sidebar for date selection
-sorted_dates = sorted(df['Date'].unique())
-
 # Sidebar for date selection using selectbox
 st.header("Select Date Range")
 start_date = st.selectbox("Start Date", sorted_dates)
 end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
-
 # Filter the data by the selected date range
-filtered_df = df[(df['Date_value'] >= start_date.replace('-', '') ) & (df['Date_value'] <= end_date.replace('-', '') )]
+filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
 
-# Count the number of dates in the range
+# Count the number of unique dates in the range
 count_dates = len(filtered_df['Date'].unique())
 
-# Assuming 'Product' is the column name for product identifiers
+# Assuming 'ProductColorNameS' is the column name for product identifiers
 # Calculate the total volume ordered for each product
 product_total_volume = filtered_df.groupby('ProductColorNameS').size().reset_index(name='TotalVolume')
 
@@ -76,27 +72,27 @@ product_total_volume = filtered_df.groupby('ProductColorNameS').size().reset_ind
 # Here we assume 'Availability' column contains max availability values for each product
 product_max_availability = df.groupby('ProductColorNameS')['Availability'].max().reset_index(name='MaxAvailability')
 
-# Merge these two DataFrames on 'Product'
+# Merge these two DataFrames on 'ProductColorNameS'
 product_data = pd.merge(product_total_volume, product_max_availability, on='ProductColorNameS')
 
 # Define restock number
 restock_number = 2
 
 # Calculate the restock point
-product_data['RestockPoint'] = round((product_data['MaxAvailability'] / restock_number) * (count_dates / product_data['TotalVolume']))
+product_data['RestockPoint'] = (product_data['MaxAvailability'] / restock_number) * (count_dates / product_data['TotalVolume'])
 
+# Function to determine action status based on restock point
+def determine_action_status(restock_point):
+    if restock_point < 1:
+        return "Brown"
+    elif restock_point == 1:
+        return "Red"
+    elif restock_point > 1 and restock_point < (restock_number * 2):
+        return "Orange"
+    else:
+        return "Green"
 
-# Calculate the Action Status
-def determine_action_status(value):
-  if value < 1:
-    return 'Brown'
-  elif value == 1:
-    return 'Red'
-  elif value > 1 and value < (restock_number * 2):
-    return 'Yellow'
-  else:
-    return 'Green'
-    
+# Apply the function to determine action status
 product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
 
 # Add custom CSS for table outline color
@@ -120,10 +116,8 @@ tbody td {
 # Render the CSS in Streamlit
 st.markdown(custom_css, unsafe_allow_html=True)
 
-# Display the filtered data and count
+# Display the filtered data with the custom table outline
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 st.write(product_data)
-
-
 
 st.write(f"Number of dates between selected range: {count_dates}")
