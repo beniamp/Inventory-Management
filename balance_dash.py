@@ -75,7 +75,7 @@ st.header("Select Date Range")
 #                     (df['Date_value'] <= end_date)]
 
 # Count the number of dates in the range
-count_dates = len(filtered_data)
+count_dates = len(filtered_df)
 
 # Display the filtered data and count
 st.write(f"Filtered Data from {selected_start_date} to {selected_end_date}:")
