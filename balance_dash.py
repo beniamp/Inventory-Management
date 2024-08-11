@@ -44,16 +44,15 @@ from xlsxwriter import Workbook
 df = pd.read_csv('BalanceV2.csv')
 
 
-# Replace null dates with a placeholder
-df['Date'] = df['Date'].fillna('0000-00-00')
-
-# creating int value by spliting - from date
-df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 
 
 # Custom date range filter using selectbox
 dates = df['Date'].unique()
 dates = sorted(dates)  # Sort the dates in ascending order
+
+# Sidebar for date selection using selectbox
+st.header("Select Date Range")
+
 selected_start_date = st.selectbox('Start Date', dates, index=0)
 selected_end_date = st.selectbox('End Date', dates, index=len(dates)-1)
 
@@ -65,20 +64,26 @@ filtered_df = df[(df['Date'] >= selected_start_date) & (df['Date'] <= selected_e
 # Sidebar for date selection
 # sorted_dates = sorted(df['Date'].unique())
 
-# Sidebar for date selection using selectbox
-st.header("Select Date Range")
-# start_date = st.selectbox("Start Date", sorted_dates)
-# end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
+# Generate a list of all dates between the selected start and end dates
+def generate_date_range(start_date, end_date, date_list):
+    """Generate all dates between start_date and end_date from the date_list"""
+    start_index = date_list.index(start_date)
+    end_index = date_list.index(end_date)
+    return date_list[start_index:end_index + 1]
 
-# Filter the data by selected date range (keeping them as strings)
-# filtered_df = df[(df['Date_value'] >= start_date) & 
-#                     (df['Date_value'] <= end_date)]
+# Get all dates in the range
+date_range_list = generate_date_range(selected_start_date, selected_end_date, dates)
 
-# Count the number of dates in the range
-count_dates = len(filtered_df)
+# Filter the DataFrame based on the selected dates
+filtered_df = df[df['Date'].isin(date_range_list)]
+
+# Count the number of distinct dates in the range
+count_dates = len(date_range_list)
 
 # Display the filtered data and count
 st.write(f"Filtered Data from {selected_start_date} to {selected_end_date}:")
 st.write(filtered_df)
 
-st.write(f"Number of dates between selected range: {count_dates}")
+st.write(f"Number of distinct dates between selected range: {count_dates}")
+
+
