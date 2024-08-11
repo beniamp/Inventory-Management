@@ -44,6 +44,13 @@ from xlsxwriter import Workbook
 df = pd.read_csv('BalanceV2.csv')
 
 
+# Replace null dates with a placeholder
+df['Date_Formatted'] = df['Date_Formatted'].fillna('0000-00-00')
+
+# creating int value by spliting - from date
+df['Date_value'] = df['Date_Formatted'].str.replace('-', '').astype(str)
+
+
 # Sidebar for date selection
 sorted_dates = sorted(df['Date'].unique())
 
@@ -53,7 +60,7 @@ start_date = st.sidebar.selectbox("Start Date", sorted_dates)
 end_date = st.sidebar.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
 # Filter the data by selected date range (keeping them as strings)
-filtered_data = df[(df['Date'] >= start_date) & 
-                     (df['Date'] <= end_date)]
+filtered_data = df[(df['Date_value'] >= start_date) & 
+                     (df['Date_value'] <= end_date)]
 
 
