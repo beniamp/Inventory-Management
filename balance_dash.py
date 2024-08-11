@@ -77,7 +77,7 @@ product_total_volume = filtered_df.groupby('ProductColorNameS').size().reset_ind
 product_max_availability = df.groupby('ProductColorNameS')['Availability'].max().reset_index(name='MaxAvailability')
 
 # Merge these two DataFrames on 'Product'
-product_data = pd.merge(product_total_volume, product_max_availability, on='Product')
+product_data = pd.merge(product_total_volume, product_max_availability, on='ProductColorNameS')
 
 # Define restock number
 restock_number = 2
