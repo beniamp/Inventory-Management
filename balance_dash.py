@@ -92,7 +92,7 @@ def determine_action_status(value):
     return 'Brown'
   elif value == 1:
     return 'Red'
-  elif value > 1 AND value < restock_number * 2
+  elif value > 1 and value < restock_number * 2
     return 'Yellow'
   else:
     return 'Green'
