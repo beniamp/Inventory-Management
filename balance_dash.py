@@ -46,9 +46,9 @@ df = pd.read_csv('BalanceV2.csv')
 
 
 # Replace null dates with a placeholder
-df['Date_Formatted'] = df['Date_Formatted'].fillna('0000-00-00')
+df['Date'] = df['Date'].fillna('0000-00-00')
 #  Creating integer from date values
-df['Date_value'] = df['Date_Formatted'].str.replace('-', '').astype(str)
+df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 
 
 # Sidebar for date selection
