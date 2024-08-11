@@ -52,12 +52,12 @@ df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 
 
 # Sidebar for date selection
-sorted_dates = sorted(df['Date_value'].unique())
+sorted_dates = sorted(df['Date'].unique())
 
 # Sidebar for date selection using selectbox
-st.sidebar.header("Select Date Range")
-start_date = st.sidebar.slider("Start Date", sorted_dates)
-end_date = st.sidebar.slider("End Date", sorted_dates, index=len(sorted_dates) - 1)
+st.header("Select Date Range")
+start_date = st.selectbox("Start Date", sorted_dates)
+end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
 # Filter the data by selected date range (keeping them as strings)
 filtered_data = df[(df['Date_value'] >= start_date) & 
