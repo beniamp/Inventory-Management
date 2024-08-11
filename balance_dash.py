@@ -59,9 +59,8 @@ st.header("Select Date Range")
 start_date = st.selectbox("Start Date", sorted_dates)
 end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
-# Filter the data by selected date range (keeping them as strings)
-filtered_df = df[(df['Date_value'] >= start_date) & 
-                    (df['Date_value'] <= end_date)]
+# Filter the data by the selected date range
+filtered_df = df[(df['Date_value'] >= start_date_value) & (df['Date_value'] <= end_date_value)]
 
 # Count the number of dates in the range
 count_dates = len(filtered_df)
