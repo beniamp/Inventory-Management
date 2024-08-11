@@ -52,6 +52,8 @@ df = df[df['Date'] != '0000-00-00']
 #  Creating integer from date values
 df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 
+# Sidebar for date selection
+sorted_dates = sorted(df['Date'].unique())
 
 # Sidebar for date selection using selectbox
 st.header("Select Date Range")
