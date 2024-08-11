@@ -67,7 +67,7 @@ filtered_data = df[(df['Date_value'] >= start_date) &
 count_dates = len(filtered_data)
 
 # Display the filtered data and count
-st.write(f"Filtered Data from {start_date_str} to {end_date_str}:")
+st.write(f"Filtered Data from {start_date} to {end_date}:")
 st.write(filtered_data)
 
 st.write(f"Number of dates between selected range: {count_dates}")
