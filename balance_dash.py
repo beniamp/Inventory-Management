@@ -52,7 +52,7 @@ df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 
 
 # Custom date range filter using selectbox
-dates = filtered_df['Date'].unique()
+dates = df['Date'].unique()
 dates = sorted(dates)  # Sort the dates in ascending order
 selected_start_date = st.sidebar.selectbox('Start Date', dates, index=0)
 selected_end_date = st.sidebar.selectbox('End Date', dates, index=len(dates)-1)
