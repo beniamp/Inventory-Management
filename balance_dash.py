@@ -100,7 +100,7 @@ def determine_action_status(restock_point):
 product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown']
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
-product_data4 = product_data[product_data['ActionStatus'] == Orange']
+product_data4 = product_data[product_data['ActionStatus'] == 'Orange']
 product_data5 = product_data[product_data['ActionStatus'] == 'Green']
 
 
