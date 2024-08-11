@@ -63,4 +63,13 @@ end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 filtered_data = df[(df['Date_value'] >= start_date) & 
                      (df['Date_value'] <= end_date)]
 
+# Count the number of dates in the range
+count_dates = len(filtered_data)
+
+# Display the filtered data and count
+st.write(f"Filtered Data from {start_date_str} to {end_date_str}:")
+st.write(filtered_data)
+
+st.write(f"Number of dates between selected range: {count_dates}")
+
 
