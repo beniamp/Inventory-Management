@@ -46,8 +46,8 @@ df = pd.read_csv('BalanceV2.csv')
 
 # Sidebar for date selection
 st.sidebar.header("Select Date Range")
-start_date = st.sidebar.slider("Start Date", min_value=df['Date_Formatted'].min(), max_value=df['Date_Formatted'].max())
-end_date = st.sidebar.slider("End Date", min_value=df['Date_Formatted'].min(), max_value=df['Date_Formatted'].max(), value=df['Date_Formatted'].max())
+start_date = st.sidebar.slider("Start Date", min_value=df['Date'].min(), max_value=df['Date'].max())
+end_date = st.sidebar.slider("End Date", min_value=df['Date'].min(), max_value=df['Date'].max(), value=df['Date'].max())
 
 
 
