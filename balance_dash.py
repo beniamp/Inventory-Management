@@ -9,20 +9,19 @@ from xlsxwriter import Workbook
 
 
 # Defining the Component of Connection String
-"""
-DRIVER_NAME = "{ODBC Driver 17 for SQL Server}"
-SERVER_NAME = "aminpour-lap"
-DATABASE_NAME = "order_management"
-USERNAME = "DGSERVICE\b.aminpour"
-"""
+# DRIVER_NAME = "{ODBC Driver 17 for SQL Server}"
+# SERVER_NAME = "aminpour-lap"
+# DATABASE_NAME = "order_management"
+# USERNAME = "DGSERVICE\b.aminpour"
 
-"""
-connection_string = f"""
-    DRIVER={DRIVER_NAME};
-    SERVER={SERVER_NAME};
-    DATABASE={DATABASE_NAME};
-    Trusted_Connection=yes;
-"""
+
+
+#connection_string = f"""
+#    DRIVER={DRIVER_NAME};
+#    SERVER={SERVER_NAME};
+#    DATABASE={DATABASE_NAME};
+#    Trusted_Connection=yes;
+
 
 
 
