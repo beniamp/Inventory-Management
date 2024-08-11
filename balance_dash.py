@@ -68,6 +68,23 @@ filtered_df = df[(df['Date_value'] >= start_date.replace('-', '') ) & (df['Date_
 # Count the number of dates in the range
 count_dates = len(filtered_df['Date'].unique())
 
+# Assuming 'Product' is the column name for product identifiers
+# Calculate the total volume ordered for each product
+product_total_volume = filtered_df.groupby('ProductColorNameS').size().reset_index(name='TotalVolume')
+
+# Calculate maximum availability for each product
+# Here we assume 'Availability' column contains max availability values for each product
+product_max_availability = df.groupby('ProductColorNameS')['Availability'].max().reset_index(name='MaxAvailability')
+
+# Merge these two DataFrames on 'Product'
+product_data = pd.merge(product_total_volume, product_max_availability, on='Product')
+
+# Define restock number
+restock_number = 2
+
+# Calculate the restock point
+product_data['RestockPoint'] = (product_data['MaxAvailability'] / restock_number) * (count_dates / product_data['TotalVolume'])
+
 # Display the filtered data and count
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 st.write(filtered_df)
