@@ -45,7 +45,7 @@ df = pd.read_csv('BalanceV2.csv')
 
 
 # Sidebar for date selection
-sorted_dates = sorted(df['Date_Formatted'].unique())
+sorted_dates = sorted(df['Date'].unique())
 
 # Sidebar for date selection using selectbox
 st.sidebar.header("Select Date Range")
@@ -53,7 +53,7 @@ start_date = st.sidebar.selectbox("Start Date", sorted_dates)
 end_date = st.sidebar.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
 # Filter the data by selected date range (keeping them as strings)
-filtered_data = df[(df['Date_Formatted'] >= start_date) & 
-                     (df['Date_Formatted'] <= end_date)]
+filtered_data = df[(df['Date'] >= start_date) & 
+                     (df['Date'] <= end_date)]
 
 
