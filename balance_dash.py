@@ -59,7 +59,7 @@ selected_end_date = st.sidebar.selectbox('End Date', dates, index=len(dates)-1)
 
 
 # Filter the DataFrame based on the selected dates
-filtered_df = filtered_df[(filtered_df['Date'] >= selected_start_date) & (filtered_df['Date'] <= selected_end_date)]
+filtered_df = df[(df['Date'] >= selected_start_date) & (df['Date'] <= selected_end_date)]
 
 
 # Sidebar for date selection
@@ -78,7 +78,7 @@ st.header("Select Date Range")
 count_dates = len(filtered_data)
 
 # Display the filtered data and count
-st.write(f"Filtered Data from {start_date} to {end_date}:")
+st.write(f"Filtered Data from {selected_start_date} to {selected_end_date}:")
 st.write(filtered_data)
 
 st.write(f"Number of dates between selected range: {count_dates}")
