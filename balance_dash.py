@@ -83,7 +83,7 @@ product_data = pd.merge(product_total_volume, product_max_availability, on='Prod
 restock_number = 2
 
 # Calculate the restock point
-product_data['RestockPoint'] = (product_data['MaxAvailability'] / (restock_number * count_dates / product_data['TotalVolume']))
+product_data['RestockPoint'] = (product_data['MaxAvailability'] / (restock_number * (count_dates / product_data['TotalVolume'])))
 
 # Display the filtered data and count
 st.write(f"Filtered Data from {start_date} to {end_date}:")
