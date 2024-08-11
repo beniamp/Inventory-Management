@@ -54,8 +54,8 @@ df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 # Custom date range filter using selectbox
 dates = df['Date'].unique()
 dates = sorted(dates)  # Sort the dates in ascending order
-selected_start_date = st.sidebar.selectbox('Start Date', dates, index=0)
-selected_end_date = st.sidebar.selectbox('End Date', dates, index=len(dates)-1)
+selected_start_date = st.selectbox('Start Date', dates, index=0)
+selected_end_date = st.selectbox('End Date', dates, index=len(dates)-1)
 
 
 # Filter the DataFrame based on the selected dates
@@ -71,7 +71,7 @@ st.header("Select Date Range")
 # end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
 # Filter the data by selected date range (keeping them as strings)
-# filtered_data = df[(df['Date_value'] >= start_date) & 
+# filtered_df = df[(df['Date_value'] >= start_date) & 
 #                     (df['Date_value'] <= end_date)]
 
 # Count the number of dates in the range
@@ -79,6 +79,6 @@ count_dates = len(filtered_data)
 
 # Display the filtered data and count
 st.write(f"Filtered Data from {selected_start_date} to {selected_end_date}:")
-st.write(filtered_data)
+st.write(filtered_df)
 
 st.write(f"Number of dates between selected range: {count_dates}")
