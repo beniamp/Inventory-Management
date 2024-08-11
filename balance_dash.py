@@ -52,7 +52,7 @@ df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 
 
 # Sidebar for date selection
-sorted_dates = sorted(df['Date'].unique())
+sorted_dates = sorted(df['Date_value'].unique())
 
 # Sidebar for date selection using selectbox
 st.sidebar.header("Select Date Range")
