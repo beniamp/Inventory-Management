@@ -56,8 +56,8 @@ sorted_dates = sorted(df['Date'].unique())
 
 # Sidebar for date selection using selectbox
 st.sidebar.header("Select Date Range")
-start_date = st.sidebar.selectbox("Start Date", sorted_dates)
-end_date = st.sidebar.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
+start_date = st.sidebar.slider("Start Date", sorted_dates)
+end_date = st.sidebar.slider("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
 # Filter the data by selected date range (keeping them as strings)
 filtered_data = df[(df['Date_value'] >= start_date) & 
