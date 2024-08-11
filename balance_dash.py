@@ -97,14 +97,20 @@ def determine_action_status(restock_point):
         return "Green"
 
 # Apply the function to determine action status
-product_data2['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
-product_data2 = product_data2[product_data2['ActionStatus'] == 'Brown']
+product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
+product_data2 = product_data[product_data['ActionStatus'] == 'Brown']
+product_data3 = product_data[product_data['ActionStatus'] == 'Red']
+product_data4 = product_data[product_data['ActionStatus'] == Orange']
+product_data5 = product_data[product_data['ActionStatus'] == 'Green']
 
 
 # Display the filtered data with the custom table outline
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 
-st.write(product_data)
 st.write(product_data2)
+st.write(product_data3)
+st.write(product_data4)
+st.write(product_data5)
+
 
 st.write(f"Number of dates between selected range: {count_dates}")
