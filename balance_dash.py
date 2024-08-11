@@ -47,28 +47,22 @@ df = pd.read_csv('BalanceV2.csv')
 
 
 
-# Custom date range filter using selectbox
-dates = df['Date'].unique()
-dates = sorted(dates)  # Sort the dates in ascending order
-selected_start_date = st.selectbox('Start Date', dates, index=0)
-selected_end_date = st.selectbox('End Date', dates, index=len(dates)-1)
-
 
 # Filter the DataFrame based on the selected dates
 filtered_df = df[(df['Date'] >= selected_start_date) & (df['Date'] <= selected_end_date)]
 
 
 # Sidebar for date selection
-# sorted_dates = sorted(df['Date'].unique())
+sorted_dates = sorted(df['Date'].unique())
 
 # Sidebar for date selection using selectbox
 st.header("Select Date Range")
-# start_date = st.selectbox("Start Date", sorted_dates)
-# end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
+start_date = st.selectbox("Start Date", sorted_dates)
+end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
 # Filter the data by selected date range (keeping them as strings)
-# filtered_df = df[(df['Date_value'] >= start_date) & 
-#                     (df['Date_value'] <= end_date)]
+filtered_df = df[(df['Date_value'] >= start_date) & 
+                    (df['Date_value'] <= end_date)]
 
 # Count the number of dates in the range
 count_dates = len(filtered_df)
