@@ -87,6 +87,6 @@ product_data['RestockPoint'] = (product_data['MaxAvailability'] / restock_number
 
 # Display the filtered data and count
 st.write(f"Filtered Data from {start_date} to {end_date}:")
-st.write(filtered_df)
+st.write(product_data)
 
 st.write(f"Number of dates between selected range: {count_dates}")
