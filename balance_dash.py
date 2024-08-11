@@ -41,15 +41,9 @@ from xlsxwriter import Workbook
 
 # Coverting our Sql Based Table into Pandas Dataframe
 #df_orders = pd.read_sql(query1, conn)
-
+# Reading data from csv file
 df = pd.read_csv('BalanceV2.csv')
 
-
-
-
-
-# Filter the DataFrame based on the selected dates
-filtered_df = df[(df['Date'] >= selected_start_date) & (df['Date'] <= selected_end_date)]
 
 
 # Sidebar for date selection
