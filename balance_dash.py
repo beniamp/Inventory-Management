@@ -108,8 +108,11 @@ product_data5 = product_data[product_data['ActionStatus'] == 'Green']
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 
 st.write(product_data2)
+
 st.write(product_data3)
+
 st.write(product_data4)
+
 st.write(product_data5)
 
 
