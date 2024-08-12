@@ -69,16 +69,18 @@ selected_category = st.selectbox('Select Category', categories)
 brands = ['All Brands'] + df['Brand'].unique().tolist()
 selected_brand = st.selectbox('Select Brand', brands)
 
-# Filter DataFrame by selected category
-if selected_category == 'All Categories':
-    filtered_df = df
-else:
-    filtered_df = df[df['Category'] == selected_category]
-
 
 
 # Filter the data by the selected date range
 filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
+
+
+# Filter DataFrame by selected category
+if selected_category == 'All Categories':
+    filtered_df = filtered_df
+else:
+    filtered_df = filtered_df[filtered_df['Category'] == selected_category]
+
 
 # Count the number of unique dates in the range
 count_dates = len(filtered_df['Date'].unique())
