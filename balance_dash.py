@@ -57,11 +57,26 @@ df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 sorted_dates = sorted(df['Date'].unique())
 
 # Sidebar for date selection using selectbox
+# st.header("Select Date Range")
+# start_date = st.selectbox("Start Date", sorted_dates)
+# end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
+
 st.header("Select Date Range")
-start_date = st.selectbox("Start Date", sorted_dates)
-end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
+# Slider for date range selection
+start_idx, end_idx = st.slider(
+    "Select Date Range",
+    min_value=0,
+    max_value=len(sorted_dates) - 1,
+    value=(0, len(sorted_dates) - 1),
+    format_func=lambda x: sorted_dates[x]
+)
 
+# Get the selected start and end dates
+start_date = sorted_dates[start_idx]
+end_date = sorted_dates[end_idx]
+
+st.write(f"Selected date range: {start_date} to {end_date}")
 
 # Category filter with 'All Categories' option
 categories = ['All Categories'] + df['Category'].unique().tolist()
