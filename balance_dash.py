@@ -100,10 +100,12 @@ def determine_action_status(product_data):
     if restock_point > 1:
         return "Brown Type 1"
     elif 0.1 < restock_point <= 1 and stock != 0:
-        return "Orange"
+        return "Red"
     elif 0.01 < restock_point <= 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30:
-        return "Green"
-    elif 0.001 < restock_point < 0.01 or round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 50:
+        return "Yellow"
+    elif 0.01 < restock_point <= 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 30:
+        return 'Green'
+    elif 0.001 < restock_point < 0.01 or round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 90:
         return "Brown Type 2"
     else:
         return 'Grey'
@@ -114,11 +116,14 @@ product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=
 
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
 
-product_data3 = product_data[product_data['ActionStatus'] == 'Orange']
+product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data3['Order_Rate'])
 
-product_data4 = product_data[product_data['ActionStatus'] == 'Green']
+product_data4 = product_data[product_data['ActionStatus'] == 'Yellow']
 product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'] / product_data4['Order_Rate'])
+
+product_data7 = product_data[product_data['ActionStatus'] == 'Green']
+product_data7['DaysRemaining'] = round(product_data7['MaxAvailability'] / product_data7['Order_Rate'])
 
 product_data5 = product_data[product_data['ActionStatus'] == 'Grey']
 product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / product_data5['Order_Rate'])
@@ -130,10 +135,11 @@ product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / produc
 # Display the filtered data with the custom table outline
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 
-st.write(product_data)
+
 st.write(product_data2)
 st.write(product_data3)
 st.write(product_data4)
+st.write(product_data7)
 st.write(product_data5)
 st.write(product_data6)
 
