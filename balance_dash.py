@@ -198,18 +198,18 @@ product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
 st.markdown("""
     <style>
     .stSelectbox > div > div > div > div:first-child:hover {
-        background-color: #803400;  /* Light green background on hover */
+        background-color: #803400; 
     }
     .stSelectbox > div > div > div > div:first-child:focus-within {
-        border-color: #ffffff;  /* Darker green border on focus */
+        border-color: #ffffff;
     }
     .stSelectbox > div > div > div > div:first-child > div {
-        color: #ebebeb;  /* Green text */
+        color: #ebebeb; 
         font-weight: bold;
     }
     </style>
 """, unsafe_allow_html=True)
-st.success(f")*(")
+st.success()
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
 
