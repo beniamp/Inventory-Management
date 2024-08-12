@@ -199,7 +199,7 @@ full_screen_style = """
         font-size: 12px;
     }
     .table-container {
-        max-height: 600px;
+        max-height: 300px;
         overflow-y: auto;
         margin-top: 20px;
     }
