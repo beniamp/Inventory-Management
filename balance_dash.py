@@ -96,15 +96,14 @@ product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAv
 def determine_action_status(product_data):
     restock_point = product_data['Restock_Ratio']
     stock = product_data['MaxAvailability']
-    days = product_data['DaysRemaining']
     
     if restock_point > 1:
         return "Brown Type 1"
     elif 0.1 < restock_point <= 1 and stock != 0:
         return "Orange"
-    elif 0.01 < restock_point <= 0.1 and days < 30:
+    elif 0.01 < restock_point <= 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30:
         return "Green"
-    elif 0.001 < restock_point < 0.01 or days > 50:
+    elif 0.001 < restock_point < 0.01 or round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30 > 50:
         return "Brown Type 2"
     else:
         return 'Grey'
@@ -116,16 +115,16 @@ product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
 
 product_data3 = product_data[product_data['ActionStatus'] == 'Orange']
-product_data3['DaysRemaining'] = round(product_data['MaxAvailability'].replace(0, 0.1) / product_data3['Order_Rate'])
+product_data3['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data3['Order_Rate'])
 
 product_data4 = product_data[product_data['ActionStatus'] == 'Green']
-product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'].replace(0, 0.1) / product_data4['Order_Rate'])
+product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'] / product_data4['Order_Rate'])
 
 product_data5 = product_data[product_data['ActionStatus'] == 'Grey']
 product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / product_data5['Order_Rate'])
 
 product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
-product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'].replace(0, 0.1) / product_data6['Order_Rate'])
+product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
 
 
 # Display the filtered data with the custom table outline
