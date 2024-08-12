@@ -232,6 +232,7 @@ st.markdown("""
     .box-yellow { background-color: #fae525; }
     .box-green { background-color: #1aba47; }
     .box-grey { background-color: #d6d6d6; }
+    .box-brown2 { background-color: #cc7700; }
     </style>
     <div class="custom-box box-brown">
         💩
@@ -268,18 +269,13 @@ st.markdown("""
 st.write(product_data5)
 
 st.markdown("""
-    <div class="custom-box box-grey">
-        ❓
+    <div class="custom-box box-brown2">
+        🙊🙈🙉
     </div>
 """, unsafe_allow_html=True)
 st.write(product_data6)
 
-st.write(product_data2)
-st.write(product_data3)
-st.write(product_data4)
-st.write(product_data7)
-st.write(product_data5)
-st.write(product_data6)
+
 
 
 
