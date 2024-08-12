@@ -113,6 +113,12 @@ st.subheader("Filter by Category")
 categories = ['All Categories'] + df['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
+# Filter DataFrame by selected category
+if selected_category == 'All Categories':
+    category_filtered_df = filtered_df
+else:
+    category_filtered_df = filtered_df[filtered_df['Category'] == selected_category]
+
 
 
 
@@ -124,7 +130,11 @@ else:
 
 
 
+
 # Filter DataFrame by selected brand
+categories = ['All Brands'] + df['Brands'].unique().tolist()
+selected_category = st.selectbox('Select Category', categories)
+
 if selected_brand != 'All Brands':
     filtered_df = category_filtered_df[category_filtered_df['Brand'] == selected_brand]
 else:
