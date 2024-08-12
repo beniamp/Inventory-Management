@@ -99,11 +99,11 @@ def determine_action_status(product_data):
     
     if restock_point > 1:
         return "Brown Type 1"
-    elif 0.1 < restock_point <= 1 and stock != 0:
+    elif 0.5 < restock_point <= 1 and stock != 0:
         return "Orange"
-    elif 0.01 < restock_point <= 0.1:
+    elif 0.01 < restock_point <= 0.5:
         return "Green"
-    else:
+    elif 0.001 < restock_point <= 0.01:
         return "Brown Type 2"
 
 # Apply the function to determine action status
