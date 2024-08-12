@@ -168,7 +168,58 @@ product_data['Order_Rate'] = product_data['TotalVolume'] / count_dates
 # Calculate Stock Ratio
 product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAvailability'].replace(0, 0.1)
 
-
+# Define CSS for full-screen layout and styling metrics
+full_screen_style = """
+    <style>
+    .main {
+        padding: 0rem;
+    }
+    .metrics-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .metric-box {
+        padding: 10px;
+        border-radius: 8px;
+        margin: 10px;
+        background-color: #f9f9f9;
+        flex: 1;
+        max-width: 300px;
+    }
+    .metric-box.green {
+        border: 2px solid #4CAF50;
+    }
+    .metric-box.red {
+        border: 2px solid #FF0000;
+    }
+    .metric-box.grey {
+        border: 2px solid #808080;
+    }
+    .metric-title {
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .metric-value {
+        font-size: 16px;
+    }
+    .table-container {
+        max-height: 600px;
+        overflow-y: auto;
+        margin-top: 20px;
+    }
+    .scrollable-table {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid;
+    padding: 5px;
+    margin-bottom: 20px
+    }
+    </style>
+"""
+# Apply CSS styling
+st.markdown(full_screen_style, unsafe_allow_html=True)
 
 # Function to determine action status based on restock point
 def determine_action_status(product_data):
@@ -233,6 +284,16 @@ product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / produc
     
 st.write(product_data2)
 # Display the styled DataFrames
+
+# Display metrics with styling
+st.markdown(f"""
+    <div class="metrics-container">
+        <div class="metric-box grey">
+            <div class="metric-title">Brown Type 1 Products</div>
+        </div>
+    </div>
+""", unsafe_allow_html=True)
+
 st.write("Brown Type 1 Products")
 st.dataframe(styled_product_data2)
 
