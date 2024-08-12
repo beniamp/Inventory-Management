@@ -63,19 +63,19 @@ sorted_dates = sorted(df['Date'].unique())
 
 st.header("Select Date Range")
 
-# Get the selected start and end dates
-start_date = sorted_dates[start_idx]
-end_date = sorted_dates[end_idx]
+
 
 # Slider for date range selection
 start_idx, end_idx = st.slider(
     "Select Date Range",
-    min_value=start_date,
+    min_value=0,
     max_value=len(sorted_dates) - 1,
     value=(0, len(sorted_dates) - 1),
 )
 
-
+# Get the selected start and end dates
+start_date = sorted_dates[start_idx]
+end_date = sorted_dates[end_idx]
 
 st.write(f"Selected date range: {start_date} to {end_date}")
 st.write(f"Number of dates between selected range: {count_dates}")
