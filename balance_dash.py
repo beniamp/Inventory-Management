@@ -46,6 +46,29 @@ import numpy as np
 df = pd.read_csv('BalanceV2.csv')
 
 
+# Inject custom CSS to style the select box
+st.markdown("""
+    <style>
+    .stSelectbox > div > div > div > div:first-child {
+        background-color: #f0f0f5;  /* Light grey background */
+        border: 2px solid #4CAF50;  /* Green border */
+        border-radius: 10px;  /* Rounded corners */
+        padding: 5px;
+    }
+    .stSelectbox > div > div > div > div:first-child:hover {
+        background-color: #e8ffe8;  /* Light green background on hover */
+    }
+    .stSelectbox > div > div > div > div:first-child:focus-within {
+        border-color: #66bb6a;  /* Darker green border on focus */
+    }
+    .stSelectbox > div > div > div > div:first-child > div {
+        color: #4CAF50;  /* Green text */
+        font-weight: bold;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
 # Replace null dates with a placeholder
 df['Date'] = df['Date'].fillna('0000-00-00')
 df = df[df['Date'] != '0000-00-00']
@@ -101,7 +124,8 @@ selected_category = st.selectbox(
     categories,
     format_func=lambda x: f"📂 {x}" if x != 'All Categories' else "📁 All Categories"
 )
-
+# Display the final filtered data count
+st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
 
 # Filter DataFrame by selected category
 if selected_category == 'All Categories':
