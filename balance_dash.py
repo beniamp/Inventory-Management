@@ -214,14 +214,48 @@ product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / produc
 product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
 
-
-
-# Custom HTML and CSS
+# Custom HTML and CSS for different colored boxes
 st.markdown("""
     <style>
-    .custom-box {
-        background-color: #803400; /* Brown color */
-        color: #803400; /* White text color */
+    .box-brown {
+        background-color: #803400; /* Dark Brown */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+    .box-red {
+        background-color: #db2c12; /* Red */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+    .box-yellow {
+        background-color: #fae525; /* Yellow */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+    .box-green {
+        background-color: #1aba47; /* Green */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+    .box-grey {
+        background-color: #d6d6d6; /* Grey */
+        color: #ffffff; /* White text color */
         padding: 20px;
         border-radius: 5px;
         font-weight: bold;
@@ -229,88 +263,29 @@ st.markdown("""
         font-size: 18px;
     }
     </style>
-    <div class="custom-box">
+    <div class="box-brown">
         💩
     </div>
-""", unsafe_allow_html=True)  
-st.write(product_data2)
-# Custom HTML and CSS
-st.markdown("""
-    <style>
-    .custom-box {
-        background-color: #db2c12; /* Brown color */
-        color: #ffffff; /* White text color */
-        padding: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
-    </style>
-    <div class="custom-box">
+    <div class="box-red">
         🚨
     </div>
-""", unsafe_allow_html=True)
-st.write(product_data3)
-# Custom HTML and CSS
-st.markdown("""
-    <style>
-    .custom-box {
-        background-color: #fae525; /* Brown color */
-        color: #ffffff; /* White text color */
-        padding: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
-    </style>
-    <div class="custom-box">
+    <div class="box-yellow">
         📅
     </div>
-""", unsafe_allow_html=True)
-st.write(product_data4)
-
-# Custom HTML and CSS
-st.markdown("""
-    <style>
-    .custom-box {
-        background-color: #1aba47; /* Brown color */
-        color: #ffffff; /* White text color */
-        padding: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
-    </style>
-    <div class="custom-box">
+    <div class="box-green">
         🙌
     </div>
-""", unsafe_allow_html=True)
-st.write(product_data7)
-
-# Custom HTML and CSS
-st.markdown("""
-    <style>
-    .custom-box {
-        background-color: #d6d6d6; /* Brown color */
-        color: #ffffff; /* White text color */
-        padding: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
-    </style>
-    <div class="custom-box">
+    <div class="box-grey">
         ❓
     </div>
 """, unsafe_allow_html=True)
-    
+
+
+st.write(product_data2)
+st.write(product_data3)
+st.write(product_data4)
+st.write(product_data7)
 st.write(product_data5)
-
-
 st.write(product_data6)
 
 
