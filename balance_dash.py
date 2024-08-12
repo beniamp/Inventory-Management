@@ -215,6 +215,64 @@ product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
 
 
+# Custom HTML and CSS for different colored boxes and tables
+st.markdown("""
+    <style>
+    .custom-box {
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+        color: #ffffff; /* White text color */
+        margin-bottom: 10px; /* Space between the box and table */
+    }
+    .box-brown { background-color: #803400; }
+    .box-red { background-color: #db2c12; }
+    .box-yellow { background-color: #fae525; }
+    .box-green { background-color: #1aba47; }
+    .box-grey { background-color: #d6d6d6; }
+    </style>
+    <div class="custom-box box-brown">
+        💩
+    </div>
+""", unsafe_allow_html=True)
+st.write(product_data2)
+
+st.markdown("""
+    <div class="custom-box box-red">
+        🚨
+    </div>
+""", unsafe_allow_html=True)
+st.write(product_data3)
+
+st.markdown("""
+    <div class="custom-box box-yellow">
+        📅
+    </div>
+""", unsafe_allow_html=True)
+st.write(product_data4)
+
+st.markdown("""
+    <div class="custom-box box-green">
+        🙌
+    </div>
+""", unsafe_allow_html=True)
+st.write(product_data7)
+
+st.markdown("""
+    <div class="custom-box box-grey">
+        ❓
+    </div>
+""", unsafe_allow_html=True)
+st.write(product_data5)
+
+st.markdown("""
+    <div class="custom-box box-grey">
+        ❓
+    </div>
+""", unsafe_allow_html=True)
+st.write(product_data6)
 
 st.write(product_data2)
 st.write(product_data3)
