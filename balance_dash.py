@@ -76,10 +76,15 @@ filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_v
 
 
 # Filter DataFrame by selected category
+# Filter DataFrame by selected category
 if selected_category == 'All Categories':
     filtered_df = filtered_df
 else:
     filtered_df = filtered_df[filtered_df['Category'] == selected_category]
+
+if filtered_df.empty:
+    st.write("No data available for the selected category.")
+    st.stop()
 
 
 # Count the number of unique dates in the range
@@ -153,10 +158,6 @@ product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / produc
 # Display the filtered data with the custom table outline
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 
-if count_dates == 0:
-    st.write("No data available for the selected date range.")
-    # Optionally, you might want to stop further processing
-    st.stop()
     
 st.write(product_data2)
 st.write(product_data3)
