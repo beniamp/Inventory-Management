@@ -221,7 +221,7 @@ st.markdown("""
     <style>
     .custom-box {
         background-color: #803400; /* Brown color */
-        color: #ffffff; /* White text color */
+        color: #803400; /* White text color */
         padding: 20px;
         border-radius: 5px;
         font-weight: bold;
