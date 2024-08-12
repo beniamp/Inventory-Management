@@ -84,11 +84,8 @@ product_data2 = pd.merge(product_total_volume, product_max_availability, on='Pro
 restock_number = 2
 
 # Calculate the restock point
-product_data['RestockPoint'] = np.where(
-    product_data['MaxAvailability'] == 0,
-    float('inf'),  # or some high threshold
-    (count_dates / product_data['TotalVolume'].replace(0, 0.1)) / product_data['MaxAvailability'].replace(0, 0.1)
-)
+product_data['RestockPoint'] = (count_dates / product_data['TotalVolume'].replace(0, 0.1)) / product_data['MaxAvailability'].replace(0, 0.1)
+
 
 
 # Function to determine action status based on restock point
