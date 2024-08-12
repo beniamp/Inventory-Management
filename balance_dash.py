@@ -83,8 +83,12 @@ product_data2 = pd.merge(product_total_volume, product_max_availability, on='Pro
 # Define restock number
 restock_number = 2
 
-# Calculate the restock point
-product_data['RestockPoint'] = (count_dates / product_data['TotalVolume'].replace(0, 0.1)) / product_data['MaxAvailability'].replace(0, 0.1)
+
+# Calculate Order Rate (Orders Per Day)
+df['Order_Rate'] = df['Order_Volume'] / df['Period_Days']
+
+# Calculate Stock Ratio
+df['Stock_Ratio'] = df['Order_Rate'] / df['Stock_Availability'].replace(0, np.nan)
 
 
 
