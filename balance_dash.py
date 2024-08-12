@@ -122,7 +122,7 @@ def determine_action_status(product_data):
     
     if restock_point > 1:
         return "Brown Type 1"
-    elif 0.1 < restock_point <= 1 and stock != 0:
+    elif 0.1 < restock_point <= 1 and stock > 0:
         return "Red"
     elif 0.01 < restock_point <= 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30:
         return "Yellow"
@@ -160,7 +160,7 @@ st.write(f"Filtered Data from {start_date} to {end_date}:")
 
     
 st.write(product_data2)
-#st.write(product_data3)
+st.write(product_data3)
 st.write(product_data4)
 st.write(product_data7)
 st.write(product_data5)
