@@ -74,8 +74,8 @@ start_idx, end_idx = st.slider(
 )
 
 # Get the selected start and end dates
-# start_date = sorted_dates[start_idx]
-# end_date = sorted_dates[end_idx]
+start_date = sorted_dates[start_idx]
+end_date = sorted_dates[end_idx]
 
 
 st.write(f"Selected date range: {start_date} to {end_date}")
