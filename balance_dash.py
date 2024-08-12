@@ -203,22 +203,21 @@ color_mapping = {
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
 
 
-def apply_color(cell, action_status):
-    color = color_mapping.get(action_status, "#ebcfb7")
+# Function to apply color based on action status
+def apply_color(value, color):
     return f'background-color: {color}; border: 2px solid black;'
 
-# Apply color to each cell based on the action status
-def style_cells(df):
+# Function to get the color for each cell based on the action status
+def color_cells(df):
     return df.style.applymap(
-        lambda cell: apply_color(cell, df.loc[cell.name, "ActionStatus"]),
-        subset=["ActionStatus"]  # Apply only to the column where ActionStatus is relevant
-    ).applymap(lambda x: 'border: 2px solid black', subset=df.columns)
+        lambda value: apply_color(value, color_mapping.get(df.loc[df.index[df['ProductColorNameS'] == value][0], 'ActionStatus'], "#ebcfb7"))
+    )
 
     
 
 # Apply the color styling to the DataFrames
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
-styled_product_data2 = product_data2.style.apply(apply_color, axis=1)
+styled_product_data2 = color_cells(product_data2)
 
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
