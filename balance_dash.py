@@ -83,9 +83,8 @@ else:
     filtered_df = filtered_df[filtered_df['Category'] == selected_category]
 
 # Filter DataFrame by selected brand
-if selected_brand == 'All Brands':
-    filtered_df = filtered_df
-else:
+# Further filter DataFrame by selected brand
+if selected_brand != 'All Brands':
     filtered_df = filtered_df[filtered_df['Brand'] == selected_brand]
 
 
