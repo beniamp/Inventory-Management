@@ -103,7 +103,7 @@ def determine_action_status(product_data):
         return "Orange"
     elif 0.01 < restock_point <= 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30:
         return "Green"
-    elif 0.001 < restock_point < 0.01 or round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30 > 50:
+    elif 0.001 < restock_point < 0.01 or round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 50:
         return "Brown Type 2"
     else:
         return 'Grey'
