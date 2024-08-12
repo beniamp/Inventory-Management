@@ -195,6 +195,27 @@ product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=
 
 
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
+
+
+product_data3 = product_data[product_data['ActionStatus'] == 'Red']
+product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
+
+
+product_data4 = product_data[product_data['ActionStatus'] == 'Yellow']
+product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'] / product_data4['Order_Rate'])
+
+
+product_data7 = product_data[product_data['ActionStatus'] == 'Green']
+product_data7['DaysRemaining'] = round(product_data7['MaxAvailability'] / product_data7['Order_Rate'])
+
+product_data5 = product_data[product_data['ActionStatus'] == 'Grey']
+product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / product_data5['Order_Rate'])
+
+product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
+product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
+
+
+
 # Custom HTML and CSS
 st.markdown("""
     <style>
@@ -211,31 +232,99 @@ st.markdown("""
     <div class="custom-box">
         💩
     </div>
-""", unsafe_allow_html=True)
-
-product_data3 = product_data[product_data['ActionStatus'] == 'Red']
-product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
-
-product_data4 = product_data[product_data['ActionStatus'] == 'Yellow']
-product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'] / product_data4['Order_Rate'])
-
-product_data7 = product_data[product_data['ActionStatus'] == 'Green']
-product_data7['DaysRemaining'] = round(product_data7['MaxAvailability'] / product_data7['Order_Rate'])
-
-product_data5 = product_data[product_data['ActionStatus'] == 'Grey']
-product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / product_data5['Order_Rate'])
-
-product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
-product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
-
-
-
-  
+""", unsafe_allow_html=True)  
 st.write(product_data2)
+# Custom HTML and CSS
+st.markdown("""
+    <style>
+    .custom-box {
+        background-color: #db2c12; /* Brown color */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+    </style>
+    <div class="custom-box">
+        🚨
+    </div>
+""", unsafe_allow_html=True)
 st.write(product_data3)
+# Custom HTML and CSS
+st.markdown("""
+    <style>
+    .custom-box {
+        background-color: #fae525; /* Brown color */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+    </style>
+    <div class="custom-box">
+        📅
+    </div>
+""", unsafe_allow_html=True)
 st.write(product_data4)
+
+# Custom HTML and CSS
+st.markdown("""
+    <style>
+    .custom-box {
+        background-color: #1aba47; /* Brown color */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+    </style>
+    <div class="custom-box">
+        🙌
+    </div>
+""", unsafe_allow_html=True)
 st.write(product_data7)
+
+# Custom HTML and CSS
+st.markdown("""
+    <style>
+    .custom-box {
+        background-color: #d6d6d6; /* Brown color */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+    </style>
+    <div class="custom-box">
+        ❓
+    </div>
 st.write(product_data5)
+
+
+# Custom HTML and CSS
+st.markdown("""
+    <style>
+    .custom-box {
+        background-color: #cc7700; /* Brown color */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+    }
+    </style>
+    <div class="custom-box">
+        🙊🙈🙉
+    </div>
 st.write(product_data6)
 
 
