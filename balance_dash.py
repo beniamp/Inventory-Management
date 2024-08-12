@@ -68,7 +68,7 @@ st.header("Select Date Range")
 # Slider for date range selection
 start_idx, end_idx = st.slider(
     "Select Date Range",
-    min_value=0,
+    min_value=sorted_dates[start_idx],
     max_value=len(sorted_dates) - 1,
     value=(0, len(sorted_dates) - 1),
 )
@@ -77,8 +77,6 @@ start_idx, end_idx = st.slider(
 # start_date = sorted_dates[start_idx]
 # end_date = sorted_dates[end_idx]
 
-start_date = start_date
-end_date = end_date
 
 st.write(f"Selected date range: {start_date} to {end_date}")
 
