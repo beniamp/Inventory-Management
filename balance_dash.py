@@ -115,11 +115,6 @@ selected_category = st.selectbox('Select Category', categories)
 
 
 
-# Filter DataFrame by selected category
-if selected_category == 'All Categories':
-    category_filtered_df = filtered_df
-else:
-    category_filtered_df = filtered_df[filtered_df['Category'] == selected_category]
 
 # Update the brands list based on the selected category
 if selected_category == 'All Categories':
