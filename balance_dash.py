@@ -195,7 +195,15 @@ product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=
 
 
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
-
+# Display dataframe with custom styles
+st.dataframe(product_data2.style.set_properties(**{
+    'border': '1px solid #FF6347',  # Tomato border for cells
+    'border-radius': '5px',
+    'padding': '10px'
+}).set_table_styles({
+    'header': [{'selector': 'thead th', 'props': [('background-color', '#FF6347'), ('color', 'white')]}],
+    'cell': [{'selector': 'td', 'props': [('border', '1px solid #FF6347')]}]
+}))
 
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
