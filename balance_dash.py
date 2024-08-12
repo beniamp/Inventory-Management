@@ -81,16 +81,13 @@ st.write(f"Selected date range: {start_date} to {end_date}")
 
 
 
-st.write(f"Number of dates between selected range: {count_dates}")
-
-
 
 # Filter the data by the selected date range
 filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
 
 # Count the number of unique dates in the range
 count_dates = len(filtered_df['Date'].unique())
-
+st.write(f"Number of dates between selected range: {count_dates}")
 
 # Category filter with 'All Categories' option
 categories = ['All Categories'] + df['Category'].unique().tolist()
