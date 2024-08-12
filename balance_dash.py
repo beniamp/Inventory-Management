@@ -182,9 +182,6 @@ product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
 
 
-# Display the filtered data with the custom table outline
-st.write(f"Filtered Data from {start_date} to {end_date}:")
-
     
 st.write(product_data2)
 st.write(product_data3)
