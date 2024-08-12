@@ -99,12 +99,14 @@ def determine_action_status(product_data):
     
     if restock_point > 1:
         return "Brown Type 1"
-    elif 0.5 < restock_point <= 1 and stock != 0:
+    elif 0.1 < restock_point <= 1 and stock != 0:
         return "Orange"
-    elif 0.01 < restock_point <= 0.5:
+    elif 0.01 < restock_point <= 0.1:
         return "Green"
-    else:
+    elif 0.001 < restock_point < 0.01:
         return "Brown Type 2"
+    else:
+        return 'Grey'
 
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
@@ -118,8 +120,11 @@ product_data3['DaysRemaining'] = round(product_data['MaxAvailability'].replace(0
 product_data4 = product_data[product_data['ActionStatus'] == 'Green']
 product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'].replace(0, 0.1) / product_data4['Order_Rate'])
 
-product_data5 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
+product_data5 = product_data[product_data['ActionStatus'] == 'Green']
 product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'].replace(0, 0.1) / product_data5['Order_Rate'])
+
+product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
+product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'].replace(0, 0.1) / product_data6['Order_Rate'])
 
 
 # Display the filtered data with the custom table outline
@@ -130,7 +135,7 @@ st.write(product_data2)
 st.write(product_data3)
 st.write(product_data4)
 st.write(product_data5)
-
+st.write(product_data6)
 
 
 st.write(f"Number of dates between selected range: {count_dates}")
