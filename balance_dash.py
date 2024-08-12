@@ -188,12 +188,6 @@ full_screen_style = """
         flex: 1;
         max-width: 300px;
     }
-    .metric-box.green {
-        border: 2px solid #4CAF50;
-    }
-    .metric-box.red {
-        border: 2px solid #FF0000;
-    }
     .metric-box.grey {
         border: 2px solid #808080;
     }
@@ -202,19 +196,12 @@ full_screen_style = """
         font-weight: bold;
     }
     .metric-value {
-        font-size: 16px;
+        font-size: 12px;
     }
     .table-container {
         max-height: 600px;
         overflow-y: auto;
         margin-top: 20px;
-    }
-    .scrollable-table {
-    max-height: 400px;
-    overflow-y: auto;
-    border: 1px solid;
-    padding: 5px;
-    margin-bottom: 20px
     }
     </style>
 """
