@@ -88,7 +88,7 @@ restock_number = 2
 product_data['Order_Rate'] = df['Volume'] / count_dates
 
 # Calculate Stock Ratio
-product_data['Stock_Ratio'] = df['Order_Rate'] / df['Availability'].replace(0, np.nan)
+product_data['Stock_Ratio'] = product_data['Order_Rate'] / df['Availability'].replace(0, np.nan)
 
 
 
