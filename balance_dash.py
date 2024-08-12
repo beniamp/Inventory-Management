@@ -105,10 +105,18 @@ def determine_action_status(restock_point):
 
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data['Restock_Ratio'].apply(determine_action_status)
+
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
+
+
 product_data3 = product_data[product_data['ActionStatus'] == 'Orange']
+product_data3['DaysRemaining'] = product_data['MaxAvailability'].replace(0, 0.1) / product_data3['Order_Rate']
+
 product_data4 = product_data[product_data['ActionStatus'] == 'Green']
+product_data4['DaysRemaining'] = product_data4['MaxAvailability'].replace(0, 0.1) / product_data4['Order_Rate']
+
 product_data5 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
+product_data5['DaysRemaining'] = product_data5['MaxAvailability'].replace(0, 0.1) / product_data5['Order_Rate']
 
 
 # Display the filtered data with the custom table outline
