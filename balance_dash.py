@@ -208,10 +208,6 @@ st.markdown("""
         border: 1px solid #FF6347;  /* Tomato color border for cells */
         padding: 8px;
     }
-    .custom-table th {
-        background-color: #FF6347;  /* Tomato color for header background */
-        color: white;
-    }
     </style>
 """, unsafe_allow_html=True)
 
