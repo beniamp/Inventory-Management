@@ -209,15 +209,6 @@ def apply_color(row):
 def style_cells(df):
     return df.style.apply(apply_color, axis=1)
 
-# Sample DataFrame
-product_data = pd.DataFrame({
-    'ProductColorNameS': ['Red', 'Green', 'Yellow', 'Brown Type 1', 'Grey', 'Brown Type 2'],
-    'TotalVolume': [100, 200, 150, 50, 300, 70],
-    'MaxAvailability': [200, 250, 100, 150, 300, 100],
-    'Order_Rate': [2, 3, 1.5, 0.5, 3.5, 0.7],
-    'Restock_Ratio': [0.1, 0.12, 0.15, 0.3, 0.07, 0.05],
-    'ActionStatus': ['Red', 'Green', 'Yellow', 'Brown Type 1', 'Grey', 'Brown Type 2']
-})
 
 # Apply color styling to the DataFrames based on ActionStatus
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
