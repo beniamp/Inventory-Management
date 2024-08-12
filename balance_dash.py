@@ -190,7 +190,7 @@ def determine_action_status(product_data):
 
 # Define a color mapping for each action status
 color_mapping = {
-    "Brown Type 1": "#8B4513",  # SaddleBrown
+    "Brown Type 1": "#ebcfb7",  # SaddleBrown
     "Red": "#FF4500",           # OrangeRed
     "Yellow": "#FFD700",        # Gold
     "Green": "#32CD32",         # LimeGreen
