@@ -191,11 +191,11 @@ def determine_action_status(product_data):
 # Define a color mapping for each action status
 color_mapping = {
     "Brown Type 1": "#ebcfb7",  # SaddleBrown
-    "Red": "#FF4500",           # OrangeRed
-    "Yellow": "#FFD700",        # Gold
-    "Green": "#32CD32",         # LimeGreen
-    "Grey": "#A9A9A9",          # DarkGray
-    "Brown Type 2": "#D2691E"   # Chocolate
+    "Red": "#fcaf92",           # OrangeRed
+    "Yellow": "#fff1a8",        # Gold
+    "Green": "#bdffbd",         # LimeGreen
+    "Grey": "#f0eded",          # DarkGray
+    "Brown Type 2": "#e8cebc"   # Chocolate
 }
 
 
@@ -207,38 +207,46 @@ def apply_color(row):
     return [f'background-color: {color_mapping.get(row["ActionStatus"], "#ebcfb7")}'] * len(row)
     
 
-
-product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
-
 # Apply the color styling to the DataFrames
+product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
 styled_product_data2 = product_data2.style.apply(apply_color, axis=1)
 
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
+styled_product_data3 = product_data3.style.apply(apply_color, axis=1)
+
 
 product_data4 = product_data[product_data['ActionStatus'] == 'Yellow']
 product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'] / product_data4['Order_Rate'])
+styled_product_data4 = product_data4.style.apply(apply_color, axis=1)
 
 product_data7 = product_data[product_data['ActionStatus'] == 'Green']
 product_data7['DaysRemaining'] = round(product_data7['MaxAvailability'] / product_data7['Order_Rate'])
+styled_product_data7 = product_data7.style.apply(apply_color, axis=1)
 
 product_data5 = product_data[product_data['ActionStatus'] == 'Grey']
 product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / product_data5['Order_Rate'])
+styled_product_data5 = product_data5.style.apply(apply_color, axis=1)
 
 product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
-
+styled_product_data6 = product_data6.style.apply(apply_color, axis=1)
 
 
 
 st.write("Brown Type 1 Products")
 st.dataframe(styled_product_data2)
+st.write("Red Products")
+st.dataframe(styled_product_data3)
+st.write("Yellow Products")
+st.dataframe(styled_product_data4)
+st.write("Green Products")
+st.dataframe(styled_product_data7)
+st.write("Grey Products")
+st.dataframe(styled_product_data5)
+st.write("Brown type 2 Products")
+st.dataframe(styled_product_data5)
 
-st.write(product_data3)
-st.write(product_data4)
-st.write(product_data7)
-st.write(product_data5)
-st.write(product_data6)
 
 
 
