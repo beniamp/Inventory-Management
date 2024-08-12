@@ -107,19 +107,12 @@ count_dates = len(filtered_df['Date'].unique())
 st.write(f"Number of dates between selected range: {count_dates}")
 
 # Category filter with 'All Categories' option
-# categories = ['All Categories'] + df['Category'].unique().tolist()
-# selected_category = st.selectbox('Select Category', categories)
-# Category Filter with Custom Styling
-st.subheader("Filter by Category")
 
+st.subheader("Filter by Category")
 categories = ['All Categories'] + df['Category'].unique().tolist()
-selected_category = st.selectbox(
-    'Select Category',
-    categories,
-    format_func=lambda x: f"📂 {x}" if x != 'All Categories' else "📁 All Categories"
-)
-# Display the final filtered data count
-st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
+selected_category = st.selectbox('Select Category', categories)
+
+
 
 # Filter DataFrame by selected category
 if selected_category == 'All Categories':
@@ -141,6 +134,8 @@ if selected_brand != 'All Brands':
 else:
     filtered_df = category_filtered_df
 
+# Display the final filtered data count
+st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
 
 # Proceed with the rest of the analysis using the filtered_df
 
