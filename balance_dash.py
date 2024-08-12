@@ -236,7 +236,7 @@ styled_product_data6 = style_cells(product_data6)
 
 # Display the styled DataFrames in Streamlit
 st.write("Brown Type 1 Products")
-st.dataframe(styled_product_data2)
+st.dataframe(product_data2)
 
 st.write("Red Products")
 st.dataframe(styled_product_data3)
