@@ -66,7 +66,7 @@ categories = ['All Categories'] + df['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
 # Brand filter with 'All Brands' option
-brands = ['All Brands'] + df['Brands'].unique().tolist()
+brands = ['All Brands'] + df['Brand'].unique().tolist()
 selected_brand = st.selectbox('Select Brand', brands)
 
 # Filter DataFrame by selected category
