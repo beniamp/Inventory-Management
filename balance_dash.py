@@ -309,22 +309,6 @@ st.markdown("""
 st.write(product_data5)
 
 
-# Custom HTML and CSS
-st.markdown("""
-    <style>
-    .custom-box {
-        background-color: #d6d6d6; /* Brown color */
-        color: #cc7700; /* White text color */
-        padding: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
-    </style>
-    <div class="custom-box">
-        🙊🙈🙉
-    </div>
 st.write(product_data6)
 
 
