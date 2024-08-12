@@ -188,12 +188,31 @@ def determine_action_status(product_data):
     else:
         return 'Grey'
 
+
+# Define a color mapping for each action status
+color_mapping = {
+    "Brown Type 1": "#8B4513",  # SaddleBrown
+    "Red": "#FF4500",           # OrangeRed
+    "Yellow": "#FFD700",        # Gold
+    "Green": "#32CD32",         # LimeGreen
+    "Grey": "#A9A9A9",          # DarkGray
+    "Brown Type 2": "#D2691E"   # Chocolate
+}
+
+
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
 
+# Function to apply color based on action status
+def apply_color(row):
+    return [f'background-color: {color_mapping.get(row["ActionStatus"], "#FFFFFF")}'] * len(row)
+    
 
 
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
+
+# Apply the color styling to the DataFrames
+styled_product_data2 = product_data2.style.apply(apply_color, axis=1)
 
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
