@@ -169,6 +169,7 @@ product_data['Order_Rate'] = product_data['TotalVolume'] / count_dates
 product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAvailability'].replace(0, 0.1)
 
 
+
 # Function to determine action status based on restock point
 def determine_action_status(product_data):
     restock_point = product_data['Restock_Ratio']
@@ -187,73 +188,36 @@ def determine_action_status(product_data):
     else:
         return 'Grey'
 
-import streamlit as st
-import pandas as pd
-
-# Define a color mapping for each action status
-color_mapping = {
-    "Brown Type 1": "#ebcfb7",  # SaddleBrown
-    "Red": "#fcaf92",           # OrangeRed
-    "Yellow": "#fff1a8",        # Gold
-    "Green": "#bdffbd",         # LimeGreen
-    "Grey": "#edeceb",          # DarkGray
-    "Brown Type 2": "#f7d1b7"   # Chocolate
-}
-
-# Function to apply color based on action status
-def apply_color(row):
-    color = color_mapping.get(row['ActionStatus'], "#ebcfb7")
-    return [f'background-color: {color}; border: 2px solid black'] * len(row)
-
-# Function to style the DataFrame based on the ActionStatus
-def style_cells(df):
-    return df.style.apply(apply_color, axis=1)
+# Apply the function to determine action status
+product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
 
 
-# Apply color styling to the DataFrames based on ActionStatus
+
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
-styled_product_data2 = style_cells(product_data2)
 
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
-styled_product_data3 = style_cells(product_data3)
 
 product_data4 = product_data[product_data['ActionStatus'] == 'Yellow']
 product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'] / product_data4['Order_Rate'])
-styled_product_data4 = style_cells(product_data4)
 
 product_data7 = product_data[product_data['ActionStatus'] == 'Green']
 product_data7['DaysRemaining'] = round(product_data7['MaxAvailability'] / product_data7['Order_Rate'])
-styled_product_data7 = style_cells(product_data7)
 
 product_data5 = product_data[product_data['ActionStatus'] == 'Grey']
 product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / product_data5['Order_Rate'])
-styled_product_data5 = style_cells(product_data5)
 
 product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
-styled_product_data6 = style_cells(product_data6)
-
-# Display the styled DataFrames in Streamlit
-st.write("Brown Type 1 Products")
-st.dataframe(product_data2)
-
-st.write("Red Products")
-st.dataframe(styled_product_data3)
-
-st.write("Yellow Products")
-st.dataframe(styled_product_data4)
-
-st.write("Green Products")
-st.dataframe(styled_product_data7)
-
-st.write("Grey Products")
-st.dataframe(styled_product_data5)
-
-st.write("Brown Type 2 Products")
-st.dataframe(styled_product_data6)
 
 
+    
+st.write(product_data2)
+st.write(product_data3)
+st.write(product_data4)
+st.write(product_data7)
+st.write(product_data5)
+st.write(product_data6)
 
 
 
