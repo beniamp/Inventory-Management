@@ -192,8 +192,38 @@ def determine_action_status(product_data):
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
 
 
+st.markdown("""
+    <style>
+    .custom-table {
+        border: 2px solid #FF6347;  /* Tomato color border for example */
+        border-radius: 5px;
+        padding: 10px;
+        margin-bottom: 20px;
+    }
+    .custom-table table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .custom-table th, .custom-table td {
+        border: 1px solid #FF6347;  /* Tomato color border for cells */
+        padding: 8px;
+    }
+    .custom-table th {
+        background-color: #FF6347;  /* Tomato color for header background */
+        color: white;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
+
 
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
+# Display tables with custom CSS
+st.markdown(f"""
+    <div class="custom-table">
+        {product_data2.to_html(index=False)}
+    </div>
+""", unsafe_allow_html=True)
 
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
