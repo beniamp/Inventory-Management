@@ -83,7 +83,7 @@ product_data2 = pd.merge(product_total_volume, product_max_availability, on='Pro
 restock_number = 2
 
 # Calculate the restock point
-product_data['RestockPoint'] = (product_data['MaxAvailability'] / restock_number) * (count_dates / product_data['TotalVolume'])
+product_data['RestockPoint'] = ((count_dates / product_data['TotalVolume'].replace(0, 0.1)) / product_data['MaxAvailability'])
 
 # Function to determine action status based on restock point
 def determine_action_status(restock_point):
@@ -98,22 +98,14 @@ def determine_action_status(restock_point):
 
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
-product_data2 = product_data[product_data['ActionStatus'] == 'Brown'].reset_index()
-product_data3 = product_data[product_data['ActionStatus'] == 'Red'].reset_index()
-product_data4 = product_data[product_data['ActionStatus'] == 'Orange'].reset_index()
-product_data5 = product_data[product_data['ActionStatus'] == 'Green'].reset_index()
+
 
 
 # Display the filtered data with the custom table outline
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 
-st.write(product_data2)
+st.write(product_data)
 
-st.write(product_data3)
-
-st.write(product_data4)
-
-st.write(product_data5)
 
 
 st.write(f"Number of dates between selected range: {count_dates}")
