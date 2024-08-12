@@ -61,12 +61,17 @@ st.header("Select Date Range")
 start_date = st.selectbox("Start Date", sorted_dates)
 end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 
+
+
 # Category filter with 'All Categories' option
 categories = ['All Categories'] + df['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
 # Filter the data by the selected date range
 filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
+
+# Count the number of unique dates in the range
+count_dates = len(filtered_df['Date'].unique())
 
 # Filter DataFrame by selected category
 if selected_category == 'All Categories':
@@ -90,8 +95,7 @@ else:
 
 
 # Proceed with the rest of the analysis using the filtered_df
-# Count the number of unique dates in the range
-count_dates = len(filtered_df['Date'].unique())
+
 
 # Assuming 'ProductColorNameS' is the column name for product identifiers
 # Calculate the total volume ordered for each product
