@@ -232,6 +232,10 @@ product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / produc
 
     
 st.write(product_data2)
+# Display the styled DataFrames
+st.write("Brown Type 1 Products")
+st.dataframe(styled_product_data2)
+
 st.write(product_data3)
 st.write(product_data4)
 st.write(product_data7)
