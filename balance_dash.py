@@ -93,10 +93,10 @@ product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAv
 
 
 # Function to determine action status based on restock point
-def determine_action_status(restock_point):
+def determine_action_status(restock_point, stock):
     if restock_point > 1:
         return "Brown Type 1"
-    elif 0.1 < restock_point < 1 :
+    elif 0.1 < restock_point < 1 AND stock != 0 :
         return "Orange"
     elif  0.01 < restock_point < 0.1:
         return "Green"
@@ -104,7 +104,7 @@ def determine_action_status(restock_point):
         return "Brown Type 2"
 
 # Apply the function to determine action status
-product_data['ActionStatus'] = product_data['Restock_Ratio'].apply(determine_action_status)
+product_data['ActionStatus'] = product_data['Restock_Ratio', 'MaxAvailability'].apply(determine_action_status)
 
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
 
