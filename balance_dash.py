@@ -69,7 +69,6 @@ start_idx, end_idx = st.slider(
     min_value=0,
     max_value=len(sorted_dates) - 1,
     value=(0, len(sorted_dates) - 1),
-    format_func=lambda x: sorted_dates[x]
 )
 
 # Get the selected start and end dates
