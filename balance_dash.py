@@ -245,7 +245,7 @@ st.dataframe(styled_product_data7)
 st.write("Grey Products")
 st.dataframe(styled_product_data5)
 st.write("Brown type 2 Products")
-st.dataframe(styled_product_data5)
+st.dataframe(styled_product_data6)
 
 
 
