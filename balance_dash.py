@@ -132,8 +132,9 @@ else:
 
 
 # Filter DataFrame by selected brand
-categories = ['All Brands'] + df['Brand'].unique().tolist()
-selected_category = st.selectbox('Select Category', categories)
+brands = ['All Brands'] +  df['Brand'].unique().tolist()
+selected_brand = st.selectbox('Select Brand', brands)
+
 
 
 # Filter DataFrame by selected brand
