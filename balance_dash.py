@@ -132,13 +132,15 @@ else:
 
 
 # Filter DataFrame by selected brand
-categories = ['All Brands'] + df['Brands'].unique().tolist()
+categories = ['All Brands'] + df['Brand'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
+
+# Filter DataFrame by selected brand
 if selected_brand != 'All Brands':
     filtered_df = category_filtered_df[category_filtered_df['Brand'] == selected_brand]
 else:
-    filtered_df = category_filtered_df
+    filtered_df = category_filtered_
 
 
 # Display the final filtered data count
