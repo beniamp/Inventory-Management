@@ -195,19 +195,22 @@ product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=
 
 
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
+# Custom HTML and CSS
 st.markdown("""
     <style>
-    .stSelectbox > div > div > div > div:first-child:hover {
-        background-color: #803400; 
-    }
-    .stSelectbox > div > div > div > div:first-child:focus-within {
-        border-color: #ffffff;
-    }
-    .stSelectbox > div > div > div > div:first-child > div {
-        color: #ebebeb; 
+    .custom-box {
+        background-color: #803400; /* Brown color */
+        color: #ffffff; /* White text color */
+        padding: 20px;
+        border-radius: 5px;
         font-weight: bold;
+        text-align: center;
+        font-size: 18px;
     }
     </style>
+    <div class="custom-box">
+        Your custom text goes here
+    </div>
 """, unsafe_allow_html=True)
 st.success()
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
