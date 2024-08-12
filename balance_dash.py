@@ -82,9 +82,14 @@ if selected_category == 'All Categories':
 else:
     filtered_df = filtered_df[filtered_df['Category'] == selected_category]
 
-if filtered_df.empty:
-    st.write("No data available for the selected category.")
-    st.stop()
+# Filter DataFrame by selected brand
+if selected_brand == 'All Brands':
+    filtered_df = filtered_df
+else:
+    filtered_df = filtered_df[filtered_df['Brand'] == selected_brand]
+
+
+
 
 
 # Count the number of unique dates in the range
