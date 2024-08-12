@@ -137,10 +137,11 @@ def determine_action_status(product_data):
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
 
 
+
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
 
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
-product_data3['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data3['Order_Rate'])
+product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
 
 product_data4 = product_data[product_data['ActionStatus'] == 'Yellow']
 product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'] / product_data4['Order_Rate'])
