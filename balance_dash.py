@@ -121,7 +121,7 @@ product_data4 = product_data[product_data['ActionStatus'] == 'Green']
 product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'].replace(0, 0.1) / product_data4['Order_Rate'])
 
 product_data5 = product_data[product_data['ActionStatus'] == 'Grey']
-product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'].replace(0, 0.1) / product_data5['Order_Rate'])
+product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / product_data5['Order_Rate'])
 
 product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'].replace(0, 0.1) / product_data6['Order_Rate'])
