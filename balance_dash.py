@@ -153,7 +153,11 @@ product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / produc
 # Display the filtered data with the custom table outline
 st.write(f"Filtered Data from {start_date} to {end_date}:")
 
-
+if count_dates == 0:
+    st.write("No data available for the selected date range.")
+    # Optionally, you might want to stop further processing
+    st.stop()
+    
 st.write(product_data2)
 st.write(product_data3)
 st.write(product_data4)
