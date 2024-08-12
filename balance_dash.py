@@ -49,12 +49,6 @@ df = pd.read_csv('BalanceV2.csv')
 # Inject custom CSS to style the select box
 st.markdown("""
     <style>
-    .stSelectbox > div > div > div > div:first-child {
-        background-color: #f0f0f5;  /* Light grey background */
-        border: 2px solid #4CAF50;  /* Green border */
-        border-radius: 10px;  /* Rounded corners */
-        padding: 5px;
-    }
     .stSelectbox > div > div > div > div:first-child:hover {
         background-color: #e8ffe8;  /* Light green background on hover */
     }
