@@ -90,8 +90,18 @@ count_dates = len(filtered_df['Date'].unique())
 st.write(f"Number of dates between selected range: {count_dates}")
 
 # Category filter with 'All Categories' option
+# categories = ['All Categories'] + df['Category'].unique().tolist()
+# selected_category = st.selectbox('Select Category', categories)
+# Category Filter with Custom Styling
+st.subheader("Filter by Category")
+
 categories = ['All Categories'] + df['Category'].unique().tolist()
-selected_category = st.selectbox('Select Category', categories)
+selected_category = st.selectbox(
+    'Select Category',
+    categories,
+    format_func=lambda x: f"📂 {x}" if x != 'All Categories' else "📁 All Categories"
+)
+
 
 # Filter DataFrame by selected category
 if selected_category == 'All Categories':
