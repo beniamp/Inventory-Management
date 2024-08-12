@@ -313,8 +313,8 @@ st.write(product_data5)
 st.markdown("""
     <style>
     .custom-box {
-        background-color: #cc7700; /* Brown color */
-        color: #ffffff; /* White text color */
+        background-color: #d6d6d6; /* Brown color */
+        color: #cc7700; /* White text color */
         padding: 20px;
         border-radius: 5px;
         font-weight: bold;
