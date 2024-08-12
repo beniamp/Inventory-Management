@@ -217,6 +217,9 @@ product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / produc
 # Custom HTML and CSS for different colored boxes
 st.markdown("""
     <style>
+    .box-container {
+        margin-bottom: 20px;
+    }
     .box-brown {
         background-color: #803400; /* Dark Brown */
         color: #ffffff; /* White text color */
@@ -263,20 +266,53 @@ st.markdown("""
         font-size: 18px;
     }
     </style>
-    <div class="box-brown">
-        💩
+    <div class="box-container">
+        <div class="box-brown">
+            💩
+        </div>
+        <div class="box-brown-table">
+            {product_data2.to_html(index=False)}
+        </div>
     </div>
-    <div class="box-red">
-        🚨
+    <div class="box-container">
+        <div class="box-red">
+            🚨
+        </div>
+        <div class="box-red-table">
+            {product_data3.to_html(index=False)}
+        </div>
     </div>
-    <div class="box-yellow">
-        📅
+    <div class="box-container">
+        <div class="box-yellow">
+            📅
+        </div>
+        <div class="box-yellow-table">
+            {product_data4.to_html(index=False)}
+        </div>
     </div>
-    <div class="box-green">
-        🙌
+    <div class="box-container">
+        <div class="box-green">
+            🙌
+        </div>
+        <div class="box-green-table">
+            {product_data7.to_html(index=False)}
+        </div>
     </div>
-    <div class="box-grey">
-        ❓
+    <div class="box-container">
+        <div class="box-grey">
+            ❓
+        </div>
+        <div class="box-grey-table">
+            {product_data5.to_html(index=False)}
+        </div>
+    </div>
+    <div class="box-container">
+        <div class="box-grey">
+            ❓
+        </div>
+        <div class="box-grey-table">
+            {product_data6.to_html(index=False)}
+        </div>
     </div>
 """, unsafe_allow_html=True)
 
