@@ -98,7 +98,7 @@ def determine_action_status(restock_point):
         return "Brown Type 1"
     elif 0.1 < restock_point < 1 :
         return "Orange"
-    elif  0.01 < restock_point < 0.1:
+    elif  0.05 < restock_point < 0.1:
         return "Green"
     else:
         return "Brown Type 2"
@@ -106,6 +106,9 @@ def determine_action_status(restock_point):
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data['Restock_Ratio'].apply(determine_action_status)
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
+product_data3 = product_data[product_data['ActionStatus'] == 'Orange']
+product_data4 = product_data[product_data['ActionStatus'] == 'Green']
+product_data5 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 
 
 # Display the filtered data with the custom table outline
@@ -113,6 +116,9 @@ st.write(f"Filtered Data from {start_date} to {end_date}:")
 
 st.write(product_data)
 st.write(product_data2)
+st.write(product_data3)
+st.write(product_data4)
+st.write(product_data5)
 
 
 
