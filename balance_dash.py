@@ -221,24 +221,24 @@ styled_product_data2 = color_cells(product_data2)
 
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
-styled_product_data3 = product_data3.style.apply(apply_color, axis=1)
+styled_product_data3 = color_cells(product_data3)
 
 
 product_data4 = product_data[product_data['ActionStatus'] == 'Yellow']
 product_data4['DaysRemaining'] = round(product_data4['MaxAvailability'] / product_data4['Order_Rate'])
-styled_product_data4 = product_data4.style.apply(apply_color, axis=1)
+styled_product_data4 = color_cells(product_data4)
 
 product_data7 = product_data[product_data['ActionStatus'] == 'Green']
 product_data7['DaysRemaining'] = round(product_data7['MaxAvailability'] / product_data7['Order_Rate'])
-styled_product_data7 = product_data7.style.apply(apply_color, axis=1)
+styled_product_data7 = color_cells(product_data7)
 
 product_data5 = product_data[product_data['ActionStatus'] == 'Grey']
 product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / product_data5['Order_Rate'])
-styled_product_data5 = product_data5.style.apply(apply_color, axis=1)
+styled_product_data5 = color_cells(product_data5)
 
 product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
-styled_product_data6 = product_data6.style.apply(apply_color, axis=1)
+styled_product_data6 = color_cells(product_data6)
 
 
 
