@@ -204,7 +204,7 @@ product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=
 
 # Function to apply color based on action status
 def apply_color(row):
-    return [f'border: 2px solid {color_mapping.get(row["ActionStatus"], "#000000")}'] * len(row)
+    return [f'border: 2px solid {color_mapping.get(row["ActionStatus"], "#ebcfb7")}'] * len(row)
 
     
 
