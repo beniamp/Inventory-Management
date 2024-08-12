@@ -65,6 +65,13 @@ end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 categories = ['All Categories'] + df['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
+# Filter DataFrame by selected category
+if selected_category == 'All Categories':
+    filtered_df = df
+else:
+    filtered_df = df[df['Category'] == selected_category]
+
+
 
 # Filter the data by the selected date range
 filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
