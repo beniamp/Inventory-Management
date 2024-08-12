@@ -212,7 +212,7 @@ st.markdown("""
         Your custom text goes here
     </div>
 """, unsafe_allow_html=True)
-st.success()
+st.success("💩")
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
 
