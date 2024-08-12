@@ -96,14 +96,15 @@ product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAv
 def determine_action_status(product_data):
     restock_point = product_data['Restock_Ratio']
     stock = product_data['MaxAvailability']
+    days = product_data['DaysRemaining']
     
     if restock_point > 1:
         return "Brown Type 1"
     elif 0.1 < restock_point <= 1 and stock != 0:
         return "Orange"
-    elif 0.01 < restock_point <= 0.1:
+    elif 0.01 < restock_point <= 0.1 and days < 30:
         return "Green"
-    elif 0.001 < restock_point < 0.01:
+    elif 0.001 < restock_point < 0.01 or days > 50:
         return "Brown Type 2"
     else:
         return 'Grey'
