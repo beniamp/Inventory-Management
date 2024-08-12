@@ -105,7 +105,7 @@ def determine_action_status(restock_point):
 
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data['Restock_Ratio'].apply(determine_action_status)
-product_data2 = product_data[product_data['ActionStatus] == 'Brown Type 1']
+product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
 
 
 # Display the filtered data with the custom table outline
