@@ -214,63 +214,34 @@ product_data5['DaysRemaining'] = round(product_data5['MaxAvailability'] / produc
 product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
 
-# Custom HTML and CSS for different colored boxes
-st.markdown("""
+# Custom HTML and CSS for different colored boxes and tables
+st.markdown(f"""
     <style>
-    .box-container {
-        margin-bottom: 20px;
-    }
-    .box-brown {
-        background-color: #803400; /* Dark Brown */
+    .box-container {{
+        margin-bottom: 30px;
+    }}
+    .box-brown, .box-red, .box-yellow, .box-green, .box-grey {{
         color: #ffffff; /* White text color */
         padding: 20px;
         border-radius: 5px;
         font-weight: bold;
         text-align: center;
         font-size: 18px;
-    }
-    .box-red {
-        background-color: #db2c12; /* Red */
-        color: #ffffff; /* White text color */
-        padding: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
-    .box-yellow {
-        background-color: #fae525; /* Yellow */
-        color: #ffffff; /* White text color */
-        padding: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
-    .box-green {
-        background-color: #1aba47; /* Green */
-        color: #ffffff; /* White text color */
-        padding: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
-    .box-grey {
-        background-color: #d6d6d6; /* Grey */
-        color: #ffffff; /* White text color */
-        padding: 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        text-align: center;
-        font-size: 18px;
-    }
+    }}
+    .box-brown {{ background-color: #803400; }}
+    .box-red {{ background-color: #db2c12; }}
+    .box-yellow {{ background-color: #fae525; }}
+    .box-green {{ background-color: #1aba47; }}
+    .box-grey {{ background-color: #d6d6d6; }}
+    .table-container {{
+        padding: 10px;
+    }}
     </style>
     <div class="box-container">
         <div class="box-brown">
             💩
         </div>
-        <div class="box-brown-table">
+        <div class="table-container">
             {product_data2.to_html(index=False)}
         </div>
     </div>
@@ -278,7 +249,7 @@ st.markdown("""
         <div class="box-red">
             🚨
         </div>
-        <div class="box-red-table">
+        <div class="table-container">
             {product_data3.to_html(index=False)}
         </div>
     </div>
@@ -286,7 +257,7 @@ st.markdown("""
         <div class="box-yellow">
             📅
         </div>
-        <div class="box-yellow-table">
+        <div class="table-container">
             {product_data4.to_html(index=False)}
         </div>
     </div>
@@ -294,7 +265,7 @@ st.markdown("""
         <div class="box-green">
             🙌
         </div>
-        <div class="box-green-table">
+        <div class="table-container">
             {product_data7.to_html(index=False)}
         </div>
     </div>
@@ -302,7 +273,7 @@ st.markdown("""
         <div class="box-grey">
             ❓
         </div>
-        <div class="box-grey-table">
+        <div class="table-container">
             {product_data5.to_html(index=False)}
         </div>
     </div>
@@ -310,7 +281,7 @@ st.markdown("""
         <div class="box-grey">
             ❓
         </div>
-        <div class="box-grey-table">
+        <div class="table-container">
             {product_data6.to_html(index=False)}
         </div>
     </div>
