@@ -65,6 +65,10 @@ end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 categories = ['All Categories'] + df['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
+# Brand filter with 'All Brands' option
+brands = ['All Brands'] + df['Brands'].unique().tolist()
+selected_brand = st.selectbox('Select Brand', brands)
+
 # Filter DataFrame by selected category
 if selected_category == 'All Categories':
     filtered_df = df
