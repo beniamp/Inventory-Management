@@ -70,7 +70,7 @@ start_idx, end_idx = st.slider(
     "Select Date Range",
     min_value=0,
     max_value=len(sorted_dates) - 1,
-    value=(0, len(sorted_dates) - 1)
+    value=(0, len(sorted_dates) - 1),
     step=1,
 )
 
