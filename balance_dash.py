@@ -85,10 +85,10 @@ restock_number = 2
 
 
 # Calculate Order Rate (Orders Per Day)
-product_data['Order_Rate'] = df['Volume'] / count_dates
+product_data['Order_Rate'] = df['TotalVolume'] / count_dates
 
 # Calculate Stock Ratio
-product_data['Stock_Ratio'] = product_data['Order_Rate'] / df['Availability'].replace(0, np.nan)
+product_data['Stock_Ratio'] = product_data['Order_Rate'] / df['MaxAvailability'].replace(0, np.nan)
 
 
 
