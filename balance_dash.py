@@ -104,7 +104,7 @@ def determine_action_status(restock_point):
         return "Green"
 
 # Apply the function to determine action status
-product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
+# product_data['ActionStatus'] = product_data['RestockPoint'].apply(determine_action_status)
 
 
 
