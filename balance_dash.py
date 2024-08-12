@@ -194,8 +194,8 @@ color_mapping = {
     "Red": "#fcaf92",           # OrangeRed
     "Yellow": "#fff1a8",        # Gold
     "Green": "#bdffbd",         # LimeGreen
-    "Grey": "#f0eded",          # DarkGray
-    "Brown Type 2": "#e8cebc"   # Chocolate
+    "Grey": "#edeceb",          # DarkGray
+    "Brown Type 2": "#f7d1b7"   # Chocolate
 }
 
 
