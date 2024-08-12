@@ -195,16 +195,21 @@ product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=
 
 
 product_data2 = product_data[product_data['ActionStatus'] == 'Brown Type 1']
-# Display dataframe with custom styles
-st.dataframe(product_data2.style.set_properties(**{
-    'border': '1px solid #FF6347',  # Tomato border for cells
-    'border-radius': '5px',
-    'padding': '10px'
-}).set_table_styles({
-    'header': [{'selector': 'thead th', 'props': [('background-color', '#FF6347'), ('color', 'white')]}],
-    'cell': [{'selector': 'td', 'props': [('border', '1px solid #FF6347')]}]
-}))
-
+st.markdown("""
+    <style>
+    .stSelectbox > div > div > div > div:first-child:hover {
+        background-color: #e8ffe8;  /* Light green background on hover */
+    }
+    .stSelectbox > div > div > div > div:first-child:focus-within {
+        border-color: #66bb6a;  /* Darker green border on focus */
+    }
+    .stSelectbox > div > div > div > div:first-child > div {
+        color: #4CAF50;  /* Green text */
+        font-weight: bold;
+    }
+    </style>
+""", unsafe_allow_html=True)
+st.success(f"**Total products in selected filters")
 product_data3 = product_data[product_data['ActionStatus'] == 'Red']
 product_data3['DaysRemaining'] = round(product_data3['MaxAvailability'] / product_data3['Order_Rate'])
 
