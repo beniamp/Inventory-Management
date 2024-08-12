@@ -65,32 +65,31 @@ end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
 categories = ['All Categories'] + df['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
-# Brand filter with 'All Brands' option
-brands = ['All Brands'] + df['Brand'].unique().tolist()
-selected_brand = st.selectbox('Select Brand', brands)
-
-
-
 # Filter the data by the selected date range
 filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
 
-
-# Filter DataFrame by selected category
 # Filter DataFrame by selected category
 if selected_category == 'All Categories':
-    filtered_df = filtered_df
+    category_filtered_df = filtered_df
 else:
-    filtered_df = filtered_df[filtered_df['Category'] == selected_category]
+    category_filtered_df = filtered_df[filtered_df['Category'] == selected_category]
+
+# Update the brands list based on the selected category
+if selected_category == 'All Categories':
+    brands = ['All Brands'] + df['Brand'].unique().tolist()
+else:
+    brands = ['All Brands'] + category_filtered_df['Brand'].unique().tolist()
+
+selected_brand = st.selectbox('Select Brand', brands)
 
 # Filter DataFrame by selected brand
-# Further filter DataFrame by selected brand
 if selected_brand != 'All Brands':
-    filtered_df = filtered_df[filtered_df['Brand'] == selected_brand]
+    filtered_df = category_filtered_df[category_filtered_df['Brand'] == selected_brand]
+else:
+    filtered_df = category_filtered_df
 
 
-
-
-
+# Proceed with the rest of the analysis using the filtered_df
 # Count the number of unique dates in the range
 count_dates = len(filtered_df['Date'].unique())
 
