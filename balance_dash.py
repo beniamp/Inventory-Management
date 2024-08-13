@@ -271,7 +271,7 @@ st.markdown("""
         ❓
     </div>
 """, unsafe_allow_html=True)
-st.caption("کالاهای مریض")
+st.write("کالاهای مریض")
 st.write(product_data5)
 
 st.markdown("""
