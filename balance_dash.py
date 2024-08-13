@@ -236,7 +236,7 @@ st.markdown("""
     .box-brown2 { background-color: #cc7700; }
     </style>
     <div class="custom-box box-brown">
-        💩<br/>تست
+        💩<br>تست
     </div>
 """, unsafe_allow_html=True)
 st.write(product_data2)
