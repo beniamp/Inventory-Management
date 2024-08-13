@@ -237,6 +237,7 @@ st.markdown("""
     </style>
     <div class="custom-box box-brown">
         💩
+        تست
     </div>
 """, unsafe_allow_html=True)
 st.write(product_data2)
