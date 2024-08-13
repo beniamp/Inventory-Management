@@ -247,7 +247,7 @@ st.markdown("""
         🚨 
     </div>
 """, unsafe_allow_html=True)
-st.caption("موجود کردن در اولین فرصت")
+st.write("موجود کردن در اولین فرصت")
 st.write(product_data3)
 
 st.markdown("""
@@ -255,7 +255,7 @@ st.markdown("""
         📅
     </div>
 """, unsafe_allow_html=True)
-st.caption("برنامه ریزی برای موجود کردن کالا")
+st.write("برنامه ریزی برای موجود کردن کالا")
 st.write(product_data4)
 
 st.markdown("""
@@ -263,7 +263,7 @@ st.markdown("""
         🙌
     </div>
 """, unsafe_allow_html=True)
-st.caption("حاشیه نسبتا امن موجودی کنونی")
+st.write("حاشیه نسبتا امن موجودی کنونی")
 st.write(product_data7)
 
 st.markdown("""
@@ -279,7 +279,7 @@ st.markdown("""
         🙊🙈🙉
     </div>
 """, unsafe_allow_html=True)
-st.caption("موجودی بیش از میزان تقاضا")
+st.write("موجودی بیش از میزان تقاضا")
 st.write(product_data6)
 
 
