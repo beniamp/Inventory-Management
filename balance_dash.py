@@ -190,7 +190,7 @@ def determine_action_status(product_data):
 
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
-
+st.write(product_data)
 
 
 
