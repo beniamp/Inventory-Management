@@ -67,7 +67,6 @@ st.markdown("""
 
 # Replace null dates with a placeholder
 df['Date'] = df['Date'].fillna('0000-00-00')
-df_orders['Date'] = df_orders['Date'].fillna('0000-00-00')
 df = df[df['Date'] != '0000-00-00']
 
 #  Creating integer from date values
