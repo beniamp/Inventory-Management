@@ -169,9 +169,9 @@ final_df = merged_df.groupby('ProductColorName', as_index=False).agg({
 df8 = final_df[(merged_df['Date'].isna()) & (merged_df['Quantity_stock'] != 0)]
 
 # Step 2: Replace values based on the given conditions
-df8.loc[:, 'ProductNameColor'] = df8['ProductNameColor'].fillna(df8['ProductColorName'])
-df8.loc[:, 'Quantity_order'] = df8['Quantity_stock'].fillna(0)
-df8.loc[:, 'Category_order'] = df8['CategoryS'].fillna(df8['Category_stock'])
+#df8.loc[:, 'ProductNameColor'] = df8['ProductNameColor'].fillna(df8['ProductColorName'])
+#df8.loc[:, 'Quantity_order'] = df8['Quantity_stock'].fillna(0)
+#df8.loc[:, 'Category_order'] = df8['CategoryS'].fillna(df8['Category_stock'])
 
 # df8 now contains the filtered and updated data
 
