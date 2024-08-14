@@ -169,7 +169,7 @@ product_total_volume2 = balanceV3.groupby('ProductName').size().reset_index(name
 
 
 # Calculate maximum availability for each product
-product_max_availability = df.groupby('ProductNameColor')['Availability'].max().reset_index(name='MaxAvailability')
+product_max_availability = df.groupby('ProductColorNameS')['Availability'].max().reset_index(name='MaxAvailability')
 
 # Merge these two DataFrames on 'ProductNameColor' (for overall product data)
 product_data = pd.merge(product_total_volume, product_max_availability, on='ProductNameColor')
