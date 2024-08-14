@@ -64,7 +64,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Replace null dates with a placeholder in df_orders
+# Replace null dates with a placeholder in df_orders for consistency
 df_orders['Date'] = df_orders['Date'].fillna('0000-00-00')
 
 # Convert dates to integer format
@@ -98,7 +98,7 @@ filtered_df = df[
     (df['Date_value'] >= start_date_int) & (df['Date_value'] <= end_date_int)
 ]
 
-# For df_orders, include rows where 'Date' is '0000-00-00'
+# For df_orders, include rows with null dates and apply the date range filter
 filtered_df2 = df_orders[
     (df_orders['Date_value'] >= start_date_int) & (df_orders['Date_value'] <= end_date_int) |
     (df_orders['Date'] == '0000-00-00')
