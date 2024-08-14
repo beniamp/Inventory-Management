@@ -166,7 +166,7 @@ final_df = merged_df.groupby('ProductColorName', as_index=False).agg({
 
 
 # Filter the DataFrame where Date_Formatted is NaN and Quantity_stock is not 0
-df8 = final_df[(final_df['Date'].isna()) & (final_df['Quantity_stock'] != 0)]
+df8 = merged_df[(merged_df['Date'].isna()) & (final_df['Quantity_stock'] != 0)]
 
 # Step 2: Replace values based on the given conditions
 #df8.loc[:, 'ProductNameColor'] = df8['ProductNameColor'].fillna(df8['ProductColorName'])
