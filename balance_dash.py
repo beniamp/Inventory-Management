@@ -125,7 +125,7 @@ selected_category = st.selectbox('Select Category', categories)
 # Filter DataFrame by selected category
 if selected_category != 'All Categories':
     filtered_df = filtered_df[filtered_df['Category'] == selected_category]
-    filtered_df2 = filtered_df2[filtered_df2['Category'] == selected_category]
+    df_stocks = df_stocks[df_stocks['Category'] == selected_category]
 
 
 
