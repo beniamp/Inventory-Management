@@ -154,7 +154,7 @@ agg_stock = df_stocks.groupby(['Name', 'Category', 'Brand'], as_index=False).agg
 # Merging aggregated stock data with filtered orders
 balanceV3 = pd.merge(
     filtered_df2, agg_stock, how='right',
-    left_on=['ProductName', 'Category'], right_on=['Product', 'Category'],
+    left_on=['ProductName', 'Category'], right_on=['Name', 'Category'],
     suffixes=('_order', '_stock')
 )
 
@@ -165,7 +165,7 @@ balanceV3 = pd.merge(
 # Assuming 'ProductColorNameS' is the column name for product identifiers
 # Calculate the total volume ordered for each product
 product_total_volume = filtered_df.groupby('ProductNameColor').size().reset_index(name='TotalVolume')
-product_total_volume2 = balanceV3.groupby('Product').size().reset_index(name='Quantity')
+product_total_volume2 = balanceV3.groupby('ProductName').size().reset_index(name='Quantity')
 
 
 # Calculate maximum availability for each product
