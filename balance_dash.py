@@ -67,11 +67,13 @@ st.markdown("""
 
 # Replace null dates with a placeholder
 df['Date'] = df['Date'].fillna('0000-00-00')
+df_orders['Date'] = df_orders['Date'].fillna('0000-00-00')
 df = df[df['Date'] != '0000-00-00']
+
 
 #  Creating integer from date values
 df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
-df_orders['Date_value'] = df_orders['Date'].str.replace('-', '').astype(str)
+df_orders['Date_value'] = df_orders['Date'].str.replace('-', '').astype(int)
 
 
 
@@ -109,7 +111,11 @@ st.write(f"Selected date range: {start_date} to {end_date}")
 
 # Filter the data by the selected date range
 filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
-filtered_df2 = df_orders[(df_orders['Date_value'] >= start_date.replace('-', '')) & (df_orders['Date_value'] <= end_date.replace('-', ''))]
+# For df_orders
+filtered_df2 = df_orders[
+    (df_orders['Date_value'] >= start_date_int) & (df_orders['Date_value'] <= end_date_int) |
+    (df_orders['Date'] == '0000-00-00')
+]
 
 
 # Count the number of unique dates in the range
