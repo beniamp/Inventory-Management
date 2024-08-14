@@ -175,7 +175,7 @@ agg_stock = df_stocks.groupby(['Name', 'Category', 'Brand'], as_index=False).agg
 # Perform the right join with the aggregated stock data
 balanceV3 = pd.merge(
     filtered_df2, agg_stock, how='right',
-    left_on='Product', right_on='Name',
+    left_on='ProductName', right_on='Name',
     suffixes=('_order', '_stock')  # to handle any potential name conflicts
 )
 
