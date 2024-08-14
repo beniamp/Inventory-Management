@@ -170,7 +170,7 @@ df8 = merged_df[(merged_df['Date'].isna()) & (merged_df['Quantity_stock'] != 0)]
 
 # Step 2: Replace values based on the given conditions
 df8.loc[:, 'Quantity_order'] = df8['Quantity_stock'].fillna(0)
-df8 = df8[['ProductColorName', 'Quantity', 'Quntity_stock']]
+df8 = df8[['ProductColorName', 'Quantity', 'Quantity_stock']]
 
 
 # df8 now contains the filtered and updated data
