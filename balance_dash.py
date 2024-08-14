@@ -185,7 +185,7 @@ balanceV3 = pd.merge(
 # Assuming 'ProductColorNameS' is the column name for product identifiers
 # Calculate the total volume ordered for each product
 product_total_volume = filtered_df.groupby('ProductColorNameS').size().reset_index(name='TotalVolume')
-product_total_volume2 = balanceV3.groupby('ProductName').size().reset_index(name='Quantity')
+product_total_volume2 = balanceV3.groupby('ProductName').agg({'Quantity_order': 'sum', 'Quantity_stock': 'max'}).reset_index(name='Quantity')
 
 # Calculate maximum availability for each product
 # Here we assume 'Availability' column contains max availability values for each product
