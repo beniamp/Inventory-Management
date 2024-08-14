@@ -298,7 +298,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجودی بیش از میزان تقاضا")
 st.write(product_data6)
-st.write(final_df)
+st.write(merged_df)
 
 
 
