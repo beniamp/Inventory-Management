@@ -156,11 +156,6 @@ agg_stock = df_stocks.groupby(['ProductColorName', 'Category', 'Brand', 'Color']
 
 # Merging aggregated stock data with filtered orders
 merged_df = pd.merge(filtered_df2, agg_stock, left_on='ProductNameColor', right_on='ProductColorName', how='right')
-# Group by Product after merging to get sum of orders and max stock
-final_df = merged_df.groupby('ProductColorName', as_index=False).agg({
-    'Quantity': 'sum',    # Sum of order quantities
-    'Quantity_stock': 'max'  # Max stock quantity for each product after aggregation
-}).rename(columns={'Quantity': 'Quantity_order'})
 
 
 
@@ -169,7 +164,7 @@ final_df = merged_df.groupby('ProductColorName', as_index=False).agg({
 df8 = merged_df[(merged_df['Date'].isna()) & (merged_df['Quantity_stock'] != 0)]
 
 # Step 2: Replace values based on the given conditions
-df8.loc[:, 'Quantity_order'] = df8['Quantity_stock'].fillna(0)
+df8.loc[:, 'Quantity'] = df8['Quantity'].fillna(0)
 df8 = df8[['ProductColorName', 'Quantity', 'Quantity_stock']]
 
 
