@@ -74,6 +74,8 @@ df = df[df['Date'] != '0000-00-00']
 df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 df_orders['Date_value'] = df_orders['Date'].str.replace('-', '').astype(str)
 
+
+
 # Sidebar for date selection
 sorted_dates = sorted(df['Date'].unique())
 #sorted_dates2 = sorted(df_orders['Date'].unique())
@@ -108,7 +110,6 @@ st.write(f"Selected date range: {start_date} to {end_date}")
 
 # Filter the data by the selected date range
 filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
-
 filtered_df2 = df_orders[(df_orders['Date_value'] >= start_date.replace('-', '')) & (df_orders['Date_value'] <= end_date.replace('-', ''))]
 
 
@@ -118,86 +119,61 @@ st.write(f"Number of dates between selected range: {count_dates}")
 
 # Category filter with 'All Categories' option
 categories = ['All Categories'] + df['Category'].unique().tolist()
-categories2 = ['All Categories'] + df_orders['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
 
 # Filter DataFrame by selected category
-if selected_category == 'All Categories':
-    category_filtered_df = filtered_df
+if selected_category != 'All Categories':
+    filtered_df = filtered_df[filtered_df['Category'] == selected_category]
+    filtered_df2 = filtered_df2[filtered_df2['Category'] == selected_category]
+
+
+
+# Brand filter with 'All Brands' option
+if selected_category != 'All Categories':
+    brands = ['All Brands'] + filtered_df['Brand'].unique().tolist()
 else:
-    category_filtered_df = filtered_df[filtered_df['Category'] == selected_category]
-
-# Filter second dataframe by selected category
-if selected_category == 'All Categories':
-    category_filtered_df2 = filtered_df2
-else:
-    category_filtered_df2 = filtered_df2[filtered_df2['Category'] == selected_category]
-
-
-
-# Update the brands list based on the selected category
-if selected_category == 'All Categories':
     brands = ['All Brands'] + df['Brand'].unique().tolist()
-else:
-    brands = ['All Brands'] + category_filtered_df['Brand'].unique().tolist()
-
-# Update the brands list based on the selected category for second dataframe
-#if selected_category == 'All Categories':
-#    brands = ['All Brands'] + df_stock['Brand'].unique().tolist()
-#else:
-#    brands = ['All Brands'] + category_filtered_df2['Brand'].unique().tolist()
-
 
 selected_brand = st.selectbox('Select Brand', brands)
 
 # Filter DataFrame by selected brand
 if selected_brand != 'All Brands':
-    filtered_df = category_filtered_df[category_filtered_df['Brand'] == selected_brand]
-else:
-    filtered_df = category_filtered_df
+    filtered_df = filtered_df[filtered_df['Brand'] == selected_brand]
+    df_stocks = df_stocks[df_stocks['Brand'] == selected_brand]  # Apply brand filter to stocks as well
 
-
-# Filter DataFrame by selected brand for second dataframe
-#if selected_brand != 'All Brands':
-#    filtered_df = category_filtered_df2[category_filtered_df2['Brand'] == selected_brand]
-#else:
-#    filtered_df2 = category_filtered_df2
-
-# Proceed with the rest of the analysis using the filtered_df
 
 
 # Display the final filtered data count
 st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
 
-# Aggregating stocks table for second dataframe
-agg_stock = df_stocks.groupby(['Name', 'Category', 'Brand'], as_index=False).agg({'Quantity': 'sum'})
-# Perform the right join with the aggregated stock data
+
+# Aggregating stock data by Name, Category, Brand
+agg_stock = df_stocks.groupby(['Product', 'Category', 'Brand'], as_index=False).agg({'Quantity': 'sum'})
+
+# Merging aggregated stock data with filtered orders
 balanceV3 = pd.merge(
     filtered_df2, agg_stock, how='right',
-    left_on='ProductName', right_on='Name',
-    suffixes=('_order', '_stock')  # to handle any potential name conflicts
+    left_on=['ProductName', 'Category'], right_on=['Product', 'Category'],
+    suffixes=('_order', '_stock')
 )
+
 
 # Proceed with the rest of the analysis using the filtered_df
 
 
 # Assuming 'ProductColorNameS' is the column name for product identifiers
 # Calculate the total volume ordered for each product
-product_total_volume = filtered_df.groupby('ProductColorNameS').size().reset_index(name='TotalVolume')
-product_total_volume2 = balanceV3.groupby('ProductName').agg({'Quantity_order': 'sum', 'Quantity_stock': 'max'}).reset_index()
+product_total_volume = filtered_df.groupby('ProductNameColor').size().reset_index(name='TotalVolume')
+product_total_volume2 = balanceV3.groupby('Product').size().reset_index(name='Quantity')
+
 
 # Calculate maximum availability for each product
-# Here we assume 'Availability' column contains max availability values for each product
-product_max_availability = df.groupby('ProductColorNameS')['Availability'].max().reset_index(name='MaxAvailability')
-# product_max_availability2 = df_stocks.groupby('Name')['Availability'].max().reset_index(name='MaxAvailability')
+product_max_availability = df.groupby('ProductNameColor')['Availability'].max().reset_index(name='MaxAvailability')
 
+# Merge these two DataFrames on 'ProductNameColor' (for overall product data)
+product_data = pd.merge(product_total_volume, product_max_availability, on='ProductNameColor'
 
-
-# Merge these two DataFrames on 'ProductColorNameS' (Whole)
-product_data = pd.merge(product_total_volume, product_max_availability, on='ProductColorNameS')
-# Merge these two DataFrames on 'ProductColorNameS' (Brown)
-# product_data_sec = pd.merge(product_total_volume2, product_max_availability2, on='ProductNameC')
 
 # Define restock number
 restock_number = 2
@@ -322,7 +298,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجودی بیش از میزان تقاضا")
 st.write(product_data6)
-st.write(product_total_volume2)
+st.write(balanceV3)
 
 
 
