@@ -149,7 +149,7 @@ st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
 
 
 # Aggregating stock data by Name, Category, Brand
-agg_stock = df_stocks.groupby(['Product', 'Category', 'Brand'], as_index=False).agg({'Quantity': 'sum'})
+agg_stock = df_stocks.groupby(['Name', 'Category', 'Brand'], as_index=False).agg({'Quantity': 'sum'})
 
 # Merging aggregated stock data with filtered orders
 balanceV3 = pd.merge(
