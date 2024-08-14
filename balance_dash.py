@@ -149,14 +149,15 @@ st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
 
 
 # Aggregating stock data by Name, Category, Brand
-agg_stock = df_stocks.groupby(['Name', 'Category', 'Brand'], as_index=False).agg({'Quantity': 'sum'})
+agg_stock = df_stocks.groupby('Product', as_index=False).agg({'Quantity': 'sum'}).rename(columns={'Quantity': 'Quantity_stock'})
 
 # Merging aggregated stock data with filtered orders
-balanceV3 = pd.merge(
-    filtered_df2, agg_stock, how='right',
-    left_on=['ProductName', 'Category'], right_on=['Name', 'Category'],
-    suffixes=('_order', '_stock')
-)
+merged_df = pd.merge(filtered_df_orders, agg_stock, left_on='ProductName', right_on='Product', how='right')
+# Group by Product after merging to get sum of orders and max stock
+final_df = merged_df.groupby('Product', as_index=False).agg({
+    'Quantity': 'sum',    # Sum of order quantities
+    'Quantity_stock': 'max'  # Max stock quantity for each product after aggregation
+}).rename(columns={'Quantity': 'Quantity_order'})
 
 
 # Proceed with the rest of the analysis using the filtered_df
@@ -165,7 +166,6 @@ balanceV3 = pd.merge(
 # Assuming 'ProductColorNameS' is the column name for product identifiers
 # Calculate the total volume ordered for each product
 product_total_volume = filtered_df.groupby('ProductColorNameS').size().reset_index(name='TotalVolume')
-product_total_volume2 = balanceV3.groupby('ProductName').size().reset_index(name='Quantity')
 
 
 # Calculate maximum availability for each product
@@ -173,7 +173,7 @@ product_max_availability = df.groupby('ProductColorNameS')['Availability'].max()
 
 # Merge these two DataFrames on 'ProductNameColor' (for overall product data)
 product_data = pd.merge(product_total_volume, product_max_availability, on='ProductColorNameS')
-
+product_data2 = pd.merge(product_total_volume2, )
 
 # Define restock number
 restock_number = 2
@@ -298,7 +298,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجودی بیش از میزان تقاضا")
 st.write(product_data6)
-st.write(product_total_volume2)
+st.write(final_df)
 
 
 
