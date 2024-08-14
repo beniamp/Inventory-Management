@@ -67,16 +67,16 @@ st.markdown("""
 
 # Replace null dates with a placeholder
 df['Date'] = df['Date'].fillna('0000-00-00')
-df_orders['Date_Formatted'] = df_orders['Date_Formatted'].fillna('0000-00-00')
+df_orders['Date'] = df_orders['Date'].fillna('0000-00-00')
 df = df[df['Date'] != '0000-00-00']
 
 #  Creating integer from date values
 df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
-df_orders['Date_value'] = df_orders['Date_Formatted'].str.replace('-', '').astype(str)
+df_orders['Date_value'] = df_orders['Date'].str.replace('-', '').astype(str)
 
 # Sidebar for date selection
 sorted_dates = sorted(df['Date'].unique())
-sorted_dates2 = sorted(df_orders['Date_Formatted']).unique()
+sorted_dates2 = sorted(df_orders['Date']).unique()
 
 
 # Sidebar for date selection using selectbox
