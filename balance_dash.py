@@ -171,11 +171,11 @@ else:
 st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
 
 # Aggregating stocks table for second dataframe
-agg_stock = df_stocks.groupby(['ProductNameC', 'Category', 'Brand'], as_index=False).agg({'Quantity': 'sum'})
+agg_stock = df_stocks.groupby(['Name', 'Category', 'Brand'], as_index=False).agg({'Quantity': 'sum'})
 # Perform the right join with the aggregated stock data
 balanceV3 = pd.merge(
     filtered_df2, agg_stock, how='right',
-    left_on='ProductNameColor', right_on='ProductNameC',
+    left_on='Name', right_on='ProductNameC',
     suffixes=('_order', '_stock')  # to handle any potential name conflicts
 )
 
