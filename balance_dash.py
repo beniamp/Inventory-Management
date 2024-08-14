@@ -64,33 +64,16 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
-# Replace null dates with a placeholder
+# Replace null dates with a placeholder in both DataFrames
 df['Date'] = df['Date'].fillna('0000-00-00')
 df_orders['Date'] = df_orders['Date'].fillna('0000-00-00')
-df = df[df['Date'] != '0000-00-00']
 
-
-#  Creating integer from date values
+# Convert dates to integer format
 df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 df_orders['Date_value'] = df_orders['Date'].str.replace('-', '').astype(str)
 
-
-
 # Sidebar for date selection
 sorted_dates = sorted(df['Date'].unique())
-#sorted_dates2 = sorted(df_orders['Date'].unique())
-
-
-# Sidebar for date selection using selectbox
-# st.header("Select Date Range")
-# start_date = st.selectbox("Start Date", sorted_dates)
-# end_date = st.selectbox("End Date", sorted_dates, index=len(sorted_dates) - 1)
-
-
-st.subheader("Select Date Range")
-
-
 
 # Slider for date range selection
 start_idx, end_idx = st.slider(
@@ -105,14 +88,24 @@ start_idx, end_idx = st.slider(
 start_date = sorted_dates[start_idx]
 end_date = sorted_dates[end_idx]
 
-
 st.write(f"Selected date range: {start_date} to {end_date}")
 
+# Convert selected dates to integer format
+start_date_int = start_date.replace('-', '')
+end_date_int = end_date.replace('-', '')
 
 # Filter the data by the selected date range
-filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
-# For df_orders
-filtered_df2 = df_orders[(df_orders['Date_value'] >= start_date.replace('-', '')) & (df_orders['Date_value'] <= end_date.replace('-', ''))]
+# Include rows where 'Date' is '0000-00-00' (placeholder for null)
+filtered_df = df[
+    (df['Date_value'] >= start_date_int) & (df['Date_value'] <= end_date_int)
+]
+
+# For df_orders, keep rows with null dates as well
+filtered_df2 = df_orders[
+    (df_orders['Date_value'] >= start_date_int) & (df_orders['Date_value'] <= end_date_int) |
+    (df_orders['Date'] == '0000-00-00')
+]
+
 
 # Count the number of unique dates in the range
 count_dates = len(filtered_df['Date'].unique())
