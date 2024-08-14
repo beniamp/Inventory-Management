@@ -144,7 +144,7 @@ else:
 
 # Update the brands list based on the selected category for second dataframe
 if selected_category == 'All Categories':
-    brands = ['All Brands'] + df_orders2['Brand'].unique().tolist()
+    brands = ['All Brands'] + df_orders['Brand'].unique().tolist()
 else:
     brands = ['All Brands'] + category_filtered_df2['Brand'].unique().tolist()
 
