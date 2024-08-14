@@ -163,6 +163,18 @@ final_df = merged_df.groupby('ProductColorName', as_index=False).agg({
 }).rename(columns={'Quantity': 'Quantity_order'})
 
 
+
+
+# Filter the DataFrame where Date_Formatted is NaN and Quantity_stock is not 0
+df8 = final_df[(final_df['Date'].isna()) & (final_df['Quantity_stock'] != 0)]
+
+# Step 2: Replace values based on the given conditions
+df8.loc[:, 'ProductNameColor'] = df8['ProductColorName'].fillna(df8['ProductNameC'])
+df8.loc[:, 'Quantity_order'] = df8['Quantity_stock'].fillna(0)
+df8.loc[:, 'Category_order'] = df8['CategoryS'].fillna(df8['Category_stock'])
+
+# df8 now contains the filtered and updated data
+
 # Proceed with the rest of the analysis using the filtered_df
 
 
@@ -301,7 +313,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجودی بیش از میزان تقاضا")
 st.write(product_data6)
-st.write(merged_df)
+st.write(df8)
 
 
 
