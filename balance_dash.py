@@ -152,7 +152,7 @@ st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
 agg_stock = df_stocks.groupby('ProductColorName', as_index=False).agg({'Quantity': 'sum'}).rename(columns={'Quantity': 'Quantity_stock'})
 
 # Merging aggregated stock data with filtered orders
-merged_df = pd.merge(filtered_df_orders, agg_stock, left_on='ProductNameColor', right_on='ProductColorName', how='right')
+merged_df = pd.merge(filtered_df2, agg_stock, left_on='ProductNameColor', right_on='ProductColorName', how='right')
 # Group by Product after merging to get sum of orders and max stock
 final_df = merged_df.groupby('ProductColorName', as_index=False).agg({
     'Quantity': 'sum',    # Sum of order quantities
