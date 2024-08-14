@@ -190,14 +190,14 @@ product_total_volume2 = balanceV3.groupby('ProductrName').size().reset_index(nam
 # Calculate maximum availability for each product
 # Here we assume 'Availability' column contains max availability values for each product
 product_max_availability = df.groupby('ProductColorNameS')['Availability'].max().reset_index(name='MaxAvailability')
-product_max_availability2 = df_stocks.groupby('Name')['Availability'].max().reset_index(name='MaxAvailability')
+# product_max_availability2 = df_stocks.groupby('Name')['Availability'].max().reset_index(name='MaxAvailability')
 
 
 
 # Merge these two DataFrames on 'ProductColorNameS' (Whole)
 product_data = pd.merge(product_total_volume, product_max_availability, on='ProductColorNameS')
 # Merge these two DataFrames on 'ProductColorNameS' (Brown)
-product_data_sec = pd.merge(product_total_volume2, product_max_availability2, on='ProductNameC')
+# product_data_sec = pd.merge(product_total_volume2, product_max_availability2, on='ProductNameC')
 
 # Define restock number
 restock_number = 2
@@ -322,7 +322,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجودی بیش از میزان تقاضا")
 st.write(product_data6)
-st.write(product_data_sec)
+st.write(product_total_volume2)
 
 
 
