@@ -149,7 +149,10 @@ st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
 
 
 # Aggregating stock data by Name, Category, Brand
-agg_stock = df_stocks.groupby('ProductColorName', as_index=False).agg({'Quantity': 'sum'}).rename(columns={'Quantity': 'Quantity_stock'})
+agg_stock = df_stocks.groupby('ProductColorName', Category, Brand, Color, as_index=False).agg({'Quantity': 'sum'}).rename(columns={'Quantity': 'Quantity_stock', 
+                                                                                                                                  'Category': CategoryS, 
+                                                                                                                                  'Brand': 'BrandS',
+                                                                                                                                  'Color': 'ColorS'})
 
 # Merging aggregated stock data with filtered orders
 merged_df = pd.merge(filtered_df2, agg_stock, left_on='ProductNameColor', right_on='ProductColorName', how='right')
