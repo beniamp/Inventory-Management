@@ -143,10 +143,10 @@ else:
     brands = ['All Brands'] + category_filtered_df['Brand'].unique().tolist()
 
 # Update the brands list based on the selected category for second dataframe
-if selected_category == 'All Categories':
-    brands = ['All Brands'] + df_orders['Brand'].unique().tolist()
-else:
-    brands = ['All Brands'] + category_filtered_df2['Brand'].unique().tolist()
+#if selected_category == 'All Categories':
+#    brands = ['All Brands'] + df_stock['Brand'].unique().tolist()
+#else:
+#    brands = ['All Brands'] + category_filtered_df2['Brand'].unique().tolist()
 
 
 selected_brand = st.selectbox('Select Brand', brands)
@@ -159,10 +159,10 @@ else:
 
 
 # Filter DataFrame by selected brand for second dataframe
-if selected_brand != 'All Brands':
-    filtered_df = category_filtered_df2[category_filtered_df2['Brand'] == selected_brand]
-else:
-    filtered_df2 = category_filtered_df2
+#if selected_brand != 'All Brands':
+#    filtered_df = category_filtered_df2[category_filtered_df2['Brand'] == selected_brand]
+#else:
+#    filtered_df2 = category_filtered_df2
 
 # Proceed with the rest of the analysis using the filtered_df
 
