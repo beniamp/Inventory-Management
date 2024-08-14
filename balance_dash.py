@@ -76,7 +76,7 @@ df_orders['Date_value'] = df_orders['Date'].str.replace('-', '').astype(str)
 
 # Sidebar for date selection
 sorted_dates = sorted(df['Date'].unique())
-sorted_dates2 = sorted(df_orders['Date']).unique())
+sorted_dates2 = sorted(df_orders['Date'].unique())
 
 
 # Sidebar for date selection using selectbox
