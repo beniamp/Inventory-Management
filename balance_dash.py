@@ -103,7 +103,7 @@ filtered_df = df[
 # For df_orders, keep rows with null dates as well
 filtered_df2 = df_orders[
     (df_orders['Date_value'] >= start_date_int) & (df_orders['Date_value'] <= end_date_int) |
-    (df_orders['Date'] == '0000-00-00')
+    (df_orders['Date'] == None')
 ]
 
 
