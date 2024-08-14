@@ -45,7 +45,7 @@ import numpy as np
 # Reading data from csv file
 df = pd.read_csv('BalanceV2.csv')
 df_orders = pd.read_csv('orders.csv')
-df_orders = df_orders[['ProductName', 'Quantity', 'ColorName', 'Date', 'Category', ]]
+df_orders = df_orders[['ProductNameColor', 'Quantity', 'ColorName', 'Date', 'Category', ]]
 df_stocks = pd.read_csv('stocks.csv')
 
 # Inject custom CSS to style the select box
