@@ -112,9 +112,7 @@ st.write(f"Selected date range: {start_date} to {end_date}")
 # Filter the data by the selected date range
 filtered_df = df[(df['Date_value'] >= start_date.replace('-', '')) & (df['Date_value'] <= end_date.replace('-', ''))]
 # For df_orders
-filtered_df2 = df_orders[
-    (df_orders['Date_value'] >= start_date) & (df_orders['Date_value'] <= end_date)]
-
+filtered_df2 = df_orders[(df_orders['Date_value'] >= start_date.replace('-', '')) & (df_orders['Date_value'] <= end_date.replace('-', ''))]
 
 # Count the number of unique dates in the range
 count_dates = len(filtered_df['Date'].unique())
