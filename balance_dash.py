@@ -172,7 +172,7 @@ product_total_volume2 = balanceV3.groupby('Product').size().reset_index(name='Qu
 product_max_availability = df.groupby('ProductNameColor')['Availability'].max().reset_index(name='MaxAvailability')
 
 # Merge these two DataFrames on 'ProductNameColor' (for overall product data)
-product_data = pd.merge(product_total_volume, product_max_availability, on='ProductNameColor'
+product_data = pd.merge(product_total_volume, product_max_availability, on='ProductNameColor')
 
 
 # Define restock number
