@@ -73,7 +73,7 @@ df = df[df['Date'] != '0000-00-00']
 
 #  Creating integer from date values
 df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
-df_orders['Date_value'] = df_orders['Date'].str.replace('-', '').astype(int)
+df_orders['Date_value'] = df_orders['Date'].str.replace('-', '').astype(str)
 
 
 
