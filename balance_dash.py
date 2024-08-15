@@ -65,15 +65,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Replace null dates with a placeholder in both DataFrames
-df['Date'] = df['Date'].fillna('0000-00-00')
-df_orders['Date'] = df_orders['Date'].fillna('0000-00-00')
+df['Date_Formatted'] = df['Date_Formatted'].fillna('0000-00-00')
+df_orders['Date_Formatted'] = df_orders['Date_Formatted'].fillna('0000-00-00')
 
 # Convert dates to integer format
-df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
-df_orders['Date_value'] = df_orders['Date'].str.replace('-', '').astype(str)
+df['Date_value'] = df['Date_Formatted'].str.replace('-', '').astype(str)
+df_orders['Date_value'] = df_orders['Date_Formatted'].str.replace('-', '').astype(str)
 
 # Sidebar for date selection
-sorted_dates = sorted(df['Date'].unique())
+sorted_dates = sorted(df['Date_Formatted'].unique())
 
 # Slider for date range selection
 start_idx, end_idx = st.slider(
@@ -103,12 +103,12 @@ filtered_df = df[
 # For df_orders, keep rows with null dates as well
 filtered_df2 = df_orders[
     (df_orders['Date_value'] >= start_date_int) & (df_orders['Date_value'] <= end_date_int) |
-    (df_orders['Date'] == '0000-00-00')
+    (df_orders['Date_Formatted'] == '0000-00-00')
 ]
 
 
 # Count the number of unique dates in the range
-count_dates = len(filtered_df['Date'].unique())
+count_dates = len(filtered_df['Date_Formatted'].unique())
 st.write(f"Number of dates between selected range: {count_dates}")
 
 # Category filter with 'All Categories' option
@@ -155,7 +155,7 @@ merged_df = pd.merge(filtered_df2, agg_stock, left_on='ProductNameColor', right_
 
 
 # Filter the DataFrame where Date_Formatted is NaN and Quantity_stock is not 0
-df8 = merged_df[(merged_df['Date'].isna()) & (merged_df['Quantity_stock'] != 0)]
+df8 = merged_df[(merged_df['Date_Formatted'].isna()) & (merged_df['Quantity_stock'] != 0)]
 
 # Step 2: Replace values based on the given conditions
 df8.loc[:, 'Quantity'] = df8['Quantity'].fillna(0)
