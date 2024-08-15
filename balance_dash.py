@@ -170,7 +170,7 @@ df8 = df8.rename(columns={'Quantity': 'TotalVolume', 'Quantity_stock': 'MaxAvail
 
 # Assuming 'ProductColorNameS' is the column name for product identifiers
 # Calculate the total volume ordered for each product
-product_total_volume = filtered_df.groupby('Product').size().reset_index(name='TotalVolume')
+product_total_volume = filtered_df.groupby('Product')['Volume'].sum().reset_index(name='TotalVolume')
 
 
 # Calculate maximum availability for each product
