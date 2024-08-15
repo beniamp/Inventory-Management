@@ -170,14 +170,14 @@ df8 = df8.rename(columns={'Quantity': 'TotalVolume', 'Quantity_stock': 'MaxAvail
 
 # Assuming 'ProductColorNameS' is the column name for product identifiers
 # Calculate the total volume ordered for each product
-product_total_volume = filtered_df.groupby('ProductName').size().reset_index(name='TotalVolume')
+product_total_volume = filtered_df.groupby('ProductNameO').size().reset_index(name='TotalVolume')
 
 
 # Calculate maximum availability for each product
 product_max_availability = df.groupby('Product')['Availability'].max().reset_index(name='MaxAvailability')
 
 # Merge these two DataFrames on 'ProductNameColor' (for overall product data)
-product_data = pd.merge(product_total_volume, product_max_availability, on='ProductColorNameS')
+product_data = pd.merge(product_total_volume, product_max_availability, on='Product')
 
 
 # Define restock number
