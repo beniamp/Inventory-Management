@@ -66,7 +66,7 @@ st.markdown("""
 
 # Replace null dates with a placeholder in both DataFrames
 df['Date'] = df['Date'].fillna('0000-00-00')
-df['Date'] = df[df['Date'] != '0000-00-00']
+df = df[df['Date'] != '0000-00-00']
 df_orders['Date_Formatted'] = df_orders['Date_Formatted'].fillna('0000-00-00')
 
 # Convert dates to integer format
