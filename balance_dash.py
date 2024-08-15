@@ -65,15 +65,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Replace null dates with a placeholder in both DataFrames
-df['Date_Formatted'] = df['Date_Formatted'].fillna('0000-00-00')
+df['Date'] = df['Date'].fillna('0000-00-00')
 df_orders['Date_Formatted'] = df_orders['Date_Formatted'].fillna('0000-00-00')
 
 # Convert dates to integer format
-df['Date_value'] = df['Date_Formatted'].str.replace('-', '').astype(str)
+df['Date_value'] = df['Date'].str.replace('-', '').astype(str)
 df_orders['Date_value'] = df_orders['Date_Formatted'].str.replace('-', '').astype(str)
 
 # Sidebar for date selection
-sorted_dates = sorted(df['Date_Formatted'].unique())
+sorted_dates = sorted(df['Date'].unique())
 
 # Slider for date range selection
 start_idx, end_idx = st.slider(
@@ -108,7 +108,7 @@ filtered_df2 = df_orders[
 
 
 # Count the number of unique dates in the range
-count_dates = len(filtered_df['Date_Formatted'].unique())
+count_dates = len(filtered_df['Date'].unique())
 st.write(f"Number of dates between selected range: {count_dates}")
 
 # Category filter with 'All Categories' option
