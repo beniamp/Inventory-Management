@@ -198,7 +198,7 @@ def determine_action_status(product_data):
     restock_point = product_data['Restock_Ratio']
     stock = product_data['MaxAvailability']
     
-    if restock_point > 1:
+    if restock_point > 1 and stock = 0:
         return "Brown Type 1"
     elif 0.05 < restock_point <= 1 and stock != 0 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 10:
         return "Red"
