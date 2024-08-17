@@ -304,7 +304,7 @@ st.markdown("""
 st.write("موجودی بیش از میزان تقاضا")
 st.write(product_data6)
 st.write(df8)
-st.caption(f"Number of rows:"{df8.shape[0]})
+st.caption(f"Number of rows:{df8.shape[0]}")
 
 
 
