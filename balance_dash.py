@@ -307,9 +307,10 @@ st.markdown("""
         🙊🙈🙉
     </div>
 """, unsafe_allow_html=True)
-st.write("موجودی بیش از میزان تقاضا")
+st.write("(فروش کم) موجودی بیش از میزان تقاضا")
 st.write(product_data6)
 st.caption(f"Number of row: {product_data6.shape[0]}")
+st.write("(فروش صفر ) موجودی بیش از میزان تقاضا")
 st.write(df8)
 st.caption(f"Number of Products: {df8.shape[0]}")
 
