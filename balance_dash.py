@@ -263,6 +263,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجودی صفر / سفارش بالا ")
 st.write(product_data2)
+st.caption(f"Number of row: {product_data2.shape[0]}")
 
 st.markdown("""
     <div class="custom-box box-red">
@@ -271,6 +272,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجود کردن در اولین فرصت")
 st.write(product_data3)
+st.caption(f"Number of row: {product_data3.shape[0]}")
 
 st.markdown("""
     <div class="custom-box box-yellow">
@@ -279,6 +281,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("برنامه ریزی برای موجود کردن کالا")
 st.write(product_data4)
+st.caption(f"Number of row: {product_data4.shape[0]}")
+
 
 st.markdown("""
     <div class="custom-box box-green">
@@ -287,6 +291,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("حاشیه نسبتا امن موجودی کنونی")
 st.write(product_data7)
+st.caption(f"Number of row: {product_data7.shape[0]}")
 
 st.markdown("""
     <div class="custom-box box-grey">
@@ -295,6 +300,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("کالاهای مریض")
 st.write(product_data5)
+st.caption(f"Number of row: {product_data5.shape[0]}")
 
 st.markdown("""
     <div class="custom-box box-brown2">
@@ -303,8 +309,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجودی بیش از میزان تقاضا")
 st.write(product_data6)
+st.caption(f"Number of row: {product_data6.shape[0]}")
 st.write(df8)
-st.caption(f"Number of rows:{df8.shape[0]}")
+st.caption(f"Number of row: {df8.shape[0]}")
 
 
 
