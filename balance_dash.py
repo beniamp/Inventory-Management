@@ -214,7 +214,6 @@ def determine_action_status(product_data):
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
 product_data['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data['Order_Rate'])
-st.write(product_data)
 
 
 
