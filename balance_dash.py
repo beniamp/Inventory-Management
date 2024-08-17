@@ -272,7 +272,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجود کردن در اولین فرصت")
 st.write(product_data3)
-st.caption(f"Number of row: {product_data3.shape[0]}")
+st.caption(f"Number of Products: {product_data3.shape[0]}")
 
 st.markdown("""
     <div class="custom-box box-yellow">
