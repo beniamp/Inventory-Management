@@ -115,6 +115,7 @@ count_dates = len(filtered_df['Date'].unique())
 st.write(f"Number of dates between selected range: {count_dates}")
 
 # Category filter with 'All Categories' option
+df['Category'] = df['Category'].replace('گوشی موبایل ', 'گوشی موبایل')
 categories = ['All Categories'] + df['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
