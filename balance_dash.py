@@ -344,7 +344,7 @@ fig_trend.update_layout(
     xaxis=dict(tickangle=-45, categoryorder='category ascending'),  # Ensure dates are in ascending order
     plot_bgcolor='white'
 )
-
+fig_trend.update_xaxes(type='category')
 # Display the trend line chart
 st.plotly_chart(fig_trend)
 
