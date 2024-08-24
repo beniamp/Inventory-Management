@@ -270,19 +270,21 @@ st.write("موجودی صفر / سفارش بالا ")
 st.write(product_data2)
 st.caption(f"Number of Products: {product_data2.shape[0]}")
 
+import streamlit as st
+import pandas as pd
+import plotly.graph_objects as go
+
+# Group data as you described
 product_total_volume2 = filtered_df.groupby(['Product', 'Date'])['Volume'].sum().reset_index()
-product_max_availability = filtered_df.groupby('Product')['Availability'].max().reset_index().sort_values(by='Availability', ascending = False)
+product_max_availability = filtered_df.groupby('Product')['Availability'].max().reset_index().sort_values(by='Availability', ascending=False)
 
 product_data_dt = pd.merge(product_total_volume2, product_max_availability, on='Product')
-
 
 # Calculate Order Rate (Orders Per Day)
 product_data_dt['Order_Rate'] = product_data_dt['Volume'] / count_dates
 
 # Calculate Stock Ratio
 product_data_dt['Restock_Ratio'] = product_data_dt['Order_Rate'] / product_data_dt['Availability'].replace(0, 0.1)
-
-# Assuming the data has been loaded and processed correctly...
 
 # Function to determine action status based on restock point
 def determine_action_status2(row):
@@ -313,10 +315,21 @@ selected_brown_product = st.selectbox('Select Product for Detailed Trend', brown
 
 # Filter the data for the selected product
 def get_product_trend_data(product_name, product_total_volume2):
-    return product_total_volume2[product_total_volume2['Product'] == product_name]
+    product_trend_data = product_total_volume2[product_total_volume2['Product'] == product_name]
+    
+    # Create a full date range
+    full_date_range = pd.Series(sorted(product_total_volume2['Date'].unique()), name='Date')
+    
+    # Reindex the product data to include all dates, fill missing dates with 0 volume
+    product_trend_data = product_trend_data.set_index('Date').reindex(full_date_range).fillna(0).reset_index()
+    
+    return product_trend_data
 
 # Get trend data for the selected product
 product_trend_data = get_product_trend_data(selected_brown_product, product_total_volume2)
+
+# Convert 'Date' column to a categorical type to maintain date format
+product_trend_data['Date'] = pd.Categorical(product_trend_data['Date'], categories=sorted(product_trend_data['Date'].unique()), ordered=True)
 
 # Create the trend line chart
 fig_trend = go.Figure()
@@ -344,6 +357,7 @@ fig_trend.update_layout(
 
 # Display the trend line chart
 st.plotly_chart(fig_trend)
+
 
 # Other sections of the report...
 st.markdown("""
