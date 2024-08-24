@@ -194,6 +194,11 @@ product_data['Order_Rate'] = product_data['TotalVolume'] / count_dates
 product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAvailability'].replace(0, 0.1)
 
 
+# Calculate Order Rate (Orders Per Day)
+product_data2['Order_Rate'] = product_data2['Volume'] / count_days
+
+# Calculate Stock Ratio
+product_data2['Restock_Ratio'] = product_data2['Order_Rate'] / product_data2['Availability'].replace(0, 0.1)
 
 # Function to determine action status based on restock point
 def determine_action_status(product_data):
@@ -278,22 +283,26 @@ product_max_availability = filtered_df.groupby('Product')['Availability'].max().
 # Merge to get the final DataFrame with availability and total volume
 product_data_dt = pd.merge(product_total_volume2, product_max_availability, on='Product')
 
+# Calculate Order Rate (Orders Per Day)
+product_data_dt['Order_Rate'] = product_data_dt['Volume'] / count_days
 
-# Add an Action Status to the DataFrame if needed (for visualization or further filtering)
-def determine_action_status(row):
-    restock_number = 2  # Define as needed
-    order_rate = row['Volume'] / count_dates
-    restock_ratio = order_rate / row['Availability'].replace(0, 0.1)
+# Calculate Stock Ratio
+product_data_dt['Restock_Ratio'] = product_data_dt['Order_Rate'] / product_data_dt['Availability'].replace(0, 0.1)
 
-    if restock_ratio > 1 and row['Availability'] == 0:
+# Function to determine action status based on restock point
+def determine_action_status(product_data):
+    restock_point = product_data_dt['Restock_Ratio']
+    stock = product_data_dt['MaxAvailability']
+    
+    if restock_point > 1 and stock == 0:
         return "Brown Type 1"
-    elif 0.05 < restock_ratio and row['Availability'] != 0 and round(row['Availability'] / order_rate) < 10:
+    elif 0.05 < restock_point and stock != 0 and round(product_data_dt['MaxAvailability'] / product_data_dt['Order_Rate']) < 10:
         return "Red"
-    elif 0.01 < restock_ratio <= 1 and round(row['Availability'] / order_rate) < 30:
+    elif 0.01 < restock_point <= 1 and round(product_data_dt['MaxAvailability'] / product_data_dt['Order_Rate']) < 30:
         return "Yellow"
-    elif 0.01 < restock_ratio <= 0.05 and round(row['Availability'] / order_rate) > 30:
+    elif 0.01 < restock_point <= 0.05 and round(product_data_dt['MaxAvailability'] / product_data_dt['Order_Rate']) > 30:
         return 'Green'
-    elif 0.001 < restock_ratio < 0.01 or round(row['Availability'] / order_rate) > 90:
+    elif 0.001 < restock_point < 0.01 or round(product_data_dt['MaxAvailability'] / product_data_dt['Order_Rate']) > 90:
         return "Brown Type 2"
     else:
         return 'Grey'
