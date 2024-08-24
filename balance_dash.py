@@ -363,7 +363,7 @@ st.markdown("""
         📅
     </div>
 """, unsafe_allow_html=True)
-st.write(
+
 
 st.markdown("""
     <div class="custom-box box-red">
