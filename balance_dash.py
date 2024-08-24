@@ -270,37 +270,39 @@ st.write("موجودی صفر / سفارش بالا ")
 st.write(product_data2)
 st.caption(f"Number of Products: {product_data2.shape[0]}")
 
-# Ensure 'Product' and 'Date' columns are in the right format for merging and filtering
 product_total_volume2 = filtered_df.groupby(['Product', 'Date'])['Volume'].sum().reset_index()
-product_max_availability = filtered_df.groupby('Product')['Availability'].max().reset_index().sort_values(by='Availability', ascending=False)
+product_max_availability = filtered_df.groupby('Product')['Availability'].max().reset_index().sort_values(by='Availability', ascending = False)
 
-# Merge to get the final DataFrame with availability and total volume
 product_data_dt = pd.merge(product_total_volume2, product_max_availability, on='Product')
 
+
 # Calculate Order Rate (Orders Per Day)
-product_data_dt['Order_Rate'] = product_data_dt['Volume'] / count_dates
+product_data_dt['Order_Rate'] = product_data_dt['Volume'] / count_days
 
 # Calculate Stock Ratio
 product_data_dt['Restock_Ratio'] = product_data_dt['Order_Rate'] / product_data_dt['Availability'].replace(0, 0.1)
 
+# Assuming the data has been loaded and processed correctly...
+
 # Function to determine action status based on restock point
-def determine_action_status2(product_data):
-    restock_point = product_data_dt['Restock_Ratio']
-    stock = product_data_dt['Availability']
+def determine_action_status2(row):
+    restock_point = row['Restock_Ratio']
+    stock = row['Availability']
     
     if restock_point > 1 and stock == 0:
         return "Brown Type 1"
-    elif 0.05 < restock_point and stock != 0 and round(product_data_dt['Availability'] / product_data_dt['Order_Rate']) < 10:
+    elif 0.05 < restock_point and stock != 0 and round(row['Availability'] / row['Order_Rate']) < 10:
         return "Red"
-    elif 0.01 < restock_point <= 1 and round(product_data_dt['Availability'] / product_data_dt['Order_Rate']) < 30:
+    elif 0.01 < restock_point <= 1 and round(row['Availability'] / row['Order_Rate']) < 30:
         return "Yellow"
-    elif 0.01 < restock_point <= 0.05 and round(product_data_dt['Availability'] / product_data_dt['Order_Rate']) > 30:
+    elif 0.01 < restock_point <= 0.05 and round(row['Availability'] / row['Order_Rate']) > 30:
         return 'Green'
-    elif 0.001 < restock_point < 0.01 or round(product_data_dt['Availability'] / product_data_dt['Order_Rate']) > 90:
+    elif 0.001 < restock_point < 0.01 or round(row['Availability'] / row['Order_Rate']) > 90:
         return "Brown Type 2"
     else:
         return 'Grey'
 
+# Apply the action status function
 product_data_dt['ActionStatus'] = product_data_dt.apply(determine_action_status2, axis=1)
 
 # Filter for Brown Type 1 products
@@ -315,6 +317,9 @@ def get_product_trend_data(product_name, product_total_volume2):
 
 # Get trend data for the selected product
 product_trend_data = get_product_trend_data(selected_brown_product, product_total_volume2)
+
+# Convert the 'Date' column to datetime format for correct plotting
+product_trend_data['Date'] = pd.to_datetime(product_trend_data['Date'], format='%Y-%m-%d')
 
 # Create the trend line chart
 fig_trend = go.Figure()
@@ -343,7 +348,23 @@ fig_trend.update_layout(
 # Display the trend line chart
 st.plotly_chart(fig_trend)
 
-st.plotly_chart(fig_trend)
+# Other sections of the report...
+st.markdown("""
+    <div class="custom-box box-red">
+        🚨 
+    </div>
+""", unsafe_allow_html=True)
+st.write("موجود کردن در اولین فرصت")
+st.write(product_data3)
+st.caption(f"Number of Products: {product_data3.shape[0]}")
+
+st.markdown("""
+    <div class="custom-box box-yellow">
+        📅
+    </div>
+""", unsafe_allow_html=True)
+st.write(
+
 st.markdown("""
     <div class="custom-box box-red">
         🚨 
