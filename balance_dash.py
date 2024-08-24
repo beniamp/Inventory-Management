@@ -341,7 +341,7 @@ fig_trend.add_trace(
         y=product_trend_data['Volume'],
         mode='lines+markers',
         line=dict(color='blue', width=2),
-        marker=dict(size=8, color='blue'),
+        marker=dict(size=4, color='red'),
         name='Quantity Trend'
     )
 )
