@@ -278,7 +278,7 @@ product_max_availability = filtered_df.groupby('Product')['Availability'].max().
 product_data_dt = pd.merge(product_total_volume2, product_max_availability, on='Product')
 
 # Calculate Order Rate (Orders Per Day)
-product_data_dt['Order_Rate'] = product_data_dt['Volume'] / count_days
+product_data_dt['Order_Rate'] = product_data_dt['Volume'] / count_dates
 
 # Calculate Stock Ratio
 product_data_dt['Restock_Ratio'] = product_data_dt['Order_Rate'] / product_data_dt['Availability'].replace(0, 0.1)
