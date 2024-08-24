@@ -194,12 +194,6 @@ product_data['Order_Rate'] = product_data['TotalVolume'] / count_dates
 product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAvailability'].replace(0, 0.1)
 
 
-# Calculate Order Rate (Orders Per Day)
-product_data2['Order_Rate'] = product_data2['Volume'] / count_days
-
-# Calculate Stock Ratio
-product_data2['Restock_Ratio'] = product_data2['Order_Rate'] / product_data2['Availability'].replace(0, 0.1)
-
 # Function to determine action status based on restock point
 def determine_action_status(product_data):
     restock_point = product_data['Restock_Ratio']
