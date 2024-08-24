@@ -318,9 +318,6 @@ def get_product_trend_data(product_name, product_total_volume2):
 # Get trend data for the selected product
 product_trend_data = get_product_trend_data(selected_brown_product, product_total_volume2)
 
-# Convert the 'Date' column to datetime format for correct plotting
-product_trend_data['Date'] = pd.to_datetime(product_trend_data['Date'], format='%Y-%m-%d')
-
 # Create the trend line chart
 fig_trend = go.Figure()
 
