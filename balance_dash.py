@@ -240,6 +240,10 @@ product_data6 = product_data[product_data['ActionStatus'] == 'Brown Type 2']
 product_data6['DaysRemaining'] = round(product_data6['MaxAvailability'] / product_data6['Order_Rate'])
 
 
+
+
+
+
 # Custom HTML and CSS for different colored boxes and tables
 st.markdown("""
     <style>
@@ -267,6 +271,76 @@ st.write("موجودی صفر / سفارش بالا ")
 st.write(product_data2)
 st.caption(f"Number of Products: {product_data2.shape[0]}")
 
+# Ensure 'Product' and 'Date' columns are in the right format for merging and filtering
+product_total_volume2 = filtered_df.groupby(['Product', 'Date'])['Volume'].sum().reset_index()
+product_max_availability = filtered_df.groupby('Product')['Availability'].max().reset_index().sort_values(by='Availability', ascending=False)
+
+# Merge to get the final DataFrame with availability and total volume
+product_data_dt = pd.merge(product_total_volume2, product_max_availability, on='Product')
+
+
+# Add an Action Status to the DataFrame if needed (for visualization or further filtering)
+def determine_action_status(row):
+    restock_number = 2  # Define as needed
+    order_rate = row['Volume'] / count_dates
+    restock_ratio = order_rate / row['Availability'].replace(0, 0.1)
+
+    if restock_ratio > 1 and row['Availability'] == 0:
+        return "Brown Type 1"
+    elif 0.05 < restock_ratio and row['Availability'] != 0 and round(row['Availability'] / order_rate) < 10:
+        return "Red"
+    elif 0.01 < restock_ratio <= 1 and round(row['Availability'] / order_rate) < 30:
+        return "Yellow"
+    elif 0.01 < restock_ratio <= 0.05 and round(row['Availability'] / order_rate) > 30:
+        return 'Green'
+    elif 0.001 < restock_ratio < 0.01 or round(row['Availability'] / order_rate) > 90:
+        return "Brown Type 2"
+    else:
+        return 'Grey'
+
+product_data_dt['ActionStatus'] = product_data_dt.apply(determine_action_status, axis=1)
+
+# Filter for Brown Type 1 products
+brown_type1_products = product_data_dt[product_data_dt['ActionStatus'] == 'Brown Type 1']
+
+# Widget for selecting a product from Brown Type 1
+selected_brown_product = st.selectbox('Select Product for Detailed Trend', brown_type1_products['Product'].unique())
+
+# Filter the data for the selected product
+def get_product_trend_data(product_name, product_total_volume2):
+    return product_total_volume2[product_total_volume2['Product'] == product_name]
+
+# Get trend data for the selected product
+product_trend_data = get_product_trend_data(selected_brown_product, product_total_volume2)
+
+# Create the trend line chart
+fig_trend = go.Figure()
+
+# Add trace for the trend line
+fig_trend.add_trace(
+    go.Scatter(
+        x=product_trend_data['Date'],
+        y=product_trend_data['Volume'],
+        mode='lines+markers',
+        line=dict(color='blue', width=2),
+        marker=dict(size=8, color='blue'),
+        name='Quantity Trend'
+    )
+)
+
+# Update layout of the chart
+fig_trend.update_layout(
+    title=f'Quantity Trend for {selected_brown_product}',
+    xaxis_title='Date',
+    yaxis_title='Total Volume',
+    xaxis=dict(tickangle=-45, categoryorder='category ascending'),  # Ensure dates are in ascending order
+    plot_bgcolor='white'
+)
+
+# Display the trend line chart
+st.plotly_chart(fig_trend)
+
+st.plotly_chart(fig_trend)
 st.markdown("""
     <div class="custom-box box-red">
         🚨 
