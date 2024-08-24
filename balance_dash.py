@@ -284,7 +284,7 @@ product_data_dt['Order_Rate'] = product_data_dt['Volume'] / count_dates
 product_data_dt['Restock_Ratio'] = product_data_dt['Order_Rate'] / product_data_dt['Availability'].replace(0, 0.1)
 
 # Function to determine action status based on restock point
-def determine_action_status(product_data):
+def determine_action_status2(product_data):
     restock_point = product_data_dt['Restock_Ratio']
     stock = product_data_dt['Availability']
     
@@ -301,7 +301,7 @@ def determine_action_status(product_data):
     else:
         return 'Grey'
 
-product_data_dt['ActionStatus'] = product_data_dt.apply(determine_action_status, axis=1)
+product_data_dt['ActionStatus'] = product_data_dt.apply(determine_action_status2, axis=1)
 
 # Filter for Brown Type 1 products
 brown_type1_products = product_data_dt[product_data_dt['ActionStatus'] == 'Brown Type 1']
