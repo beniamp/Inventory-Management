@@ -140,6 +140,7 @@ product_total_volume = filtered_df.groupby(['Product', 'Warehouse'])['Volume'].s
 
 # Merge these two DataFrames on 'Product'
 product_data = pd.merge(product_total_volume, product_max_availability, on='Product')
+product_data['Warehouse'] = product_data[product_data.groupby(['Product']).agg({'Volume': 'max', 'Availability': 'sum'} == 'All options']
 
 # Define restock number
 restock_number = 2
