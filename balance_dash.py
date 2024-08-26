@@ -243,3 +243,7 @@ st.markdown("""
 st.write("(فروش کم) موجودی بیش از میزان تقاضا")
 st.write(product_data[product_data['ActionStatus'] == 'Brown Type 2'])
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 2'].shape[0]}")
+
+st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
+st.write(df8)
+st.caption(f"Number of Products: {df8.shape[0]}")
