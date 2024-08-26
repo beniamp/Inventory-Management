@@ -295,7 +295,7 @@ def determine_action_status2(row):
         return "Brown Type 1"
     elif 0.05 < restock_point and stock != 0 and round(row['Availability'] / row['Order_Rate']) < 10:
         return "Red"
-    elif 0.01 < restock_point <= 1 and round(row['Availability'] / row['Order_Rate']) < 30:
+    elif 0.01 < restock_point <= 1 and stock != 0 and round(row['Availability'] / row['Order_Rate']) < 30:
         return "Yellow"
     elif 0.01 < restock_point <= 0.05 and round(row['Availability'] / row['Order_Rate']) > 30:
         return 'Green'
