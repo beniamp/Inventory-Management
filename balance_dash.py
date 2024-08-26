@@ -234,3 +234,12 @@ st.markdown("""
 st.write("کالاهای مریض")
 st.write(product_data[product_data['ActionStatus'] == 'Grey'])
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Grey'].shape[0]}")
+
+st.markdown("""
+    <div class="custom-box box-grey">
+        🙊🙈🙉
+    </div>
+""", unsafe_allow_html=True)
+st.write("(فروش کم) موجودی بیش از میزان تقاضا"))
+st.write(product_data[product_data['ActionStatus'] == 'Brown Type 2'])
+st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 2'].shape[0]}")
