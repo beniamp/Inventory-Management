@@ -177,7 +177,7 @@ st.markdown("""
     <style>
     .custom-box {
         padding: 20px;
-        border-radius: 5px;
+        border-radius: 8px;
         font-weight: bold;
         text-align: center;
         font-size: 18px;
