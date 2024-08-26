@@ -236,7 +236,7 @@ st.write(product_data[product_data['ActionStatus'] == 'Grey'])
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Grey'].shape[0]}")
 
 st.markdown("""
-    <div class="custom-box box-grey">
+    <div class="custom-box box-brown2">
         🙊🙈🙉
     </div>
 """, unsafe_allow_html=True)
