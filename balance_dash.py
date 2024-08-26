@@ -133,10 +133,10 @@ df8 = df8[['ProductColorName', 'Quantity', 'Quantity_stock']]
 df8 = df8.rename(columns={'Quantity': 'TotalVolume', 'Quantity_stock': 'MaxAvailability'})
 
 # Calculate maximum availability for each product considering the warehouse
-product_max_availability = df.groupby('Product')['Availability'].max().reset_index(name='MaxAvailability')
+product_max_availability = df.groupby(['Product', 'Warehouse'])['Availability'].max().reset_index(name='MaxAvailability')
 
 # Calculate the total volume ordered for each product
-product_total_volume = filtered_df.groupby(['Product', 'Warehouse'])['Volume'].sum().reset_index(name='TotalVolume')
+product_total_volume = filtered_df.groupby('Product')['Volume'].sum().reset_index(name='TotalVolume')
 
 # Merge these two DataFrames on 'Product'
 product_data = pd.merge(product_total_volume, product_max_availability, on='Product')
