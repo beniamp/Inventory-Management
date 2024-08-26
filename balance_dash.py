@@ -189,11 +189,12 @@ product_total_volume = filtered_df.groupby('Product')['Volume'].sum().reset_inde
 
 
 # Calculate maximum availability for each product
-product_max_availability = df.groupby('Product')['Availability'].max().reset_index(name='MaxAvailability')
+#product_max_availability = df.groupby('Product')['Availability'].max().reset_index(name='MaxAvailability')
 
 # Merge these two DataFrames on 'ProductNameColor' (for overall product data)
-product_data = pd.merge(product_total_volume, product_max_availability, on='Product')
+# product_data = pd.merge(product_total_volume, product_max_availability, on='Product')
 
+product_data = filtered_df.groupby(['Product', 'Warehouse']).agg({'Volume': 'sum', 'Availability': 'max'}).reset_index()
 
 # Define restock number
 restock_number = 2
