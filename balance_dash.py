@@ -73,7 +73,7 @@ count_dates = len(filtered_df['Date'].unique())
 st.write(f"Number of dates between selected range: {count_dates}")
 
 # Warehouse filter with 'All options' option
-warehouses = ['All options'] + df_stocks['Warehouse'].unique().tolist()
+warehouses = ['All options'] + df['Warehouse'].unique().tolist()
 selected_warehouse = st.selectbox('Select Warehouse', warehouses)
 
 # Filter DataFrame by selected warehouse
