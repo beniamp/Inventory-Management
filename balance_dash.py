@@ -114,6 +114,18 @@ filtered_df2 = df_orders[
 count_dates = len(filtered_df['Date'].unique())
 st.write(f"Number of dates between selected range: {count_dates}")
 
+
+# Warehouse filter with All options
+
+warehouses = ['All options'] + df['Warehouse'].unique().tolist()
+selected_warehouse = st.selectbox('Select Warehouse', warehouses)
+
+# Filter DataFrame by selected warehouse
+if selected_warehouse != 'All options':
+    filtered_df = filtered_df[filtered_df['Warehouse'] == selected_warehouse]
+    df_stocks = df_stocks[df_stocks['Warehouse'] == selected_warehouse]
+
+
 # Category filter with 'All Categories' option
 categories = ['All Categories'] + df['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
