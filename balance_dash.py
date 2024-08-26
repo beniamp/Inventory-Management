@@ -81,6 +81,38 @@ if selected_warehouse != 'All options':
     filtered_df = filtered_df[filtered_df['Warehouse'] == selected_warehouse]
     df_stocks = df_stocks[df_stocks['Warehouse'] == selected_warehouse]
 
+
+# Category filter with 'All Categories' option
+categories = ['All Categories'] + df['Category'].unique().tolist()
+selected_category = st.selectbox('Select Category', categories)
+
+
+# Filter DataFrame by selected category
+if selected_category != 'All Categories':
+    filtered_df = filtered_df[filtered_df['Category'] == selected_category]
+    df_stocks = df_stocks[df_stocks['Category'] == selected_category]
+
+
+
+# Brand filter with 'All Brands' option
+if selected_category != 'All Categories':
+    brands = ['All Brands'] + filtered_df['Brand'].unique().tolist()
+else:
+    brands = ['All Brands'] + df['Brand'].unique().tolist()
+
+selected_brand = st.selectbox('Select Brand', brands)
+
+# Filter DataFrame by selected brand
+if selected_brand != 'All Brands':
+    filtered_df = filtered_df[filtered_df['Brand'] == selected_brand]
+    df_stocks = df_stocks[df_stocks['Brand'] == selected_brand]  # Apply brand filter to stocks as well
+
+
+
+# Display the final filtered data count
+st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
+
+
 # Aggregating stock data by Name, Category, Brand, Warehouse
 agg_stock = df_stocks.groupby(['ProductColorName', 'Category', 'Brand', 'Color', 'Warehouse'], as_index=False).agg({'Quantity': 'sum'}).rename(columns={
     'Quantity': 'Quantity_stock',
