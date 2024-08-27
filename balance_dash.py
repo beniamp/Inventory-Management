@@ -159,7 +159,7 @@ if selected_warehouse == 'All options':
 
 
 
-product_data = product_data[['Product', 'Warehouse_y', 'TotalVolume', 'MaxAvailability']]
+#product_data = product_data[['Product', 'Warehouse_y', 'TotalVolume', 'MaxAvailability']]
 
 
 # Define restock number
