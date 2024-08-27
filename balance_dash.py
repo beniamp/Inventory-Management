@@ -158,6 +158,11 @@ if selected_warehouse == 'All options':
     product_data = product_data.groupby('Product').agg({'TotalVolume': 'sum', 'MaxAvailability': 'sum'}).reset_index()
 
 
+# Group by Product and Warehouse, and create a string of availability details
+df['Availability_Detail'] = df.groupby(['Product', 'Warehouse'])['Availability'] \
+    .apply(lambda x: ', '.join(x.astype(str) + ' in ' + df['Warehouse'])) \
+    .reset_index(drop=True)
+
 product_data['Details_Available'] = product_data['Availability_Detail'].apply(lambda x: '🔍' if x else '')
 
 
