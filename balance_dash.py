@@ -100,12 +100,12 @@ if selected_category != 'All Categories':
 else:
     brands = ['All Brands'] + df['Brand'].unique().tolist()
 
-selected_brand = st.multiselect('Select Brand', brands)
+selected_brands = st.multiselect('Select Brand', brands)
 
-# Filter DataFrame by selected brand
-if selected_brand != 'All Brands':
-    filtered_df = filtered_df[filtered_df['Brand'] == selected_brand]
-    df_stocks = df_stocks[df_stocks['Brand'] == selected_brand]  # Apply brand filter to stocks as well
+# Filter DataFrame by selected brands
+if 'All Brands' not in selected_brands:
+    filtered_df = filtered_df[filtered_df['Brand'].isin(selected_brands)]
+    df_stocks = df_stocks[df_stocks['Brand'].isin(selected_brands)]  # Apply brand filter to stocks as well
 
 
 
