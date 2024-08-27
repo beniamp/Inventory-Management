@@ -83,10 +83,15 @@ st.write(f"Number of dates between selected range: {count_dates}")
 warehouses = ['All options'] + df['Warehouse'].unique().tolist()
 selected_warehouse = st.selectbox('Select Warehouse', warehouses)
 
-# Filter DataFrame by selected warehouse
-if selected_warehouse != 'All options':
+
+if selected_warehouse == 'All options':
+    # Group by 'Product' and sum 'MaxAvailability' across all warehouses
+    product_data = filtered_df.groupby('Product').agg({'Volume': 'sum', 'Availability': 'sum'}).reset_index()
+else:
+    # Filter by the selected warehouse and group by 'Product'
     filtered_df = filtered_df[filtered_df['Warehouse'] == selected_warehouse]
-    df_stocks = df_stocks[df_stocks['Warehouse'] == selected_warehouse]
+    product_data = filtered_df.groupby('Product').agg({'Volume': 'sum', 'Availability': 'sum'}).reset_index()
+
 
 
 # Category filter with 'All Categories' option
@@ -140,13 +145,20 @@ df8 = df8[['ProductColorName', 'Quantity', 'Quantity_stock']].reset_index(drop=T
 df8 = df8.rename(columns={'Quantity': 'TotalVolume', 'Quantity_stock': 'MaxAvailability'})
 
 # Calculate maximum availability for each product considering the warehouse
-product_max_availability = filtered_df.groupby(['Product', 'Warehouse'])['Availability'].max().reset_index(name='MaxAvailability')
+product_max_availability = df.groupby(['Product', 'Warehouse'])['Availability'].max().reset_index(name='MaxAvailability')
 
 # Calculate the total volume ordered for each product
-product_total_volume = filtered_df.groupby(['Product', 'Warehouse'])['Volume'].sum().reset_index(name='TotalVolume')
+product_total_volume = df.groupby(['Product', 'Warehouse'])['Volume'].sum().reset_index(name='TotalVolume')
 
-# Merge these two DataFrames on 'Product'
-product_data = pd.merge(product_total_volume, product_max_availability, on='Product')
+# Merge these two DataFrames on 'Product' and 'Warehouse'
+product_data = pd.merge(product_total_volume, product_max_availability, on=['Product', 'Warehouse'])
+
+# If "All options" is selected, aggregate across all warehouses
+if selected_warehouse == 'All options':
+    product_data = product_data.groupby('Product').agg({'TotalVolume': 'sum', 'MaxAvailability': 'sum'}).reset_index()
+
+
+
 product_data = product_data[['Product', 'Warehouse_y', 'TotalVolume', 'MaxAvailability']]
 
 
