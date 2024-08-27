@@ -159,6 +159,18 @@ if selected_warehouse == 'All options':
 
 
 #product_data = product_data[['Product', 'Warehouse_y', 'TotalVolume', 'MaxAvailability']]
+# Group by Product and Warehouse, and create a string of availability details
+df['Availability_Detail'] = df.groupby(['Product', 'Warehouse'])['Availability'] \
+    .apply(lambda x: ', '.join(x.astype(str) + ' in ' + df['Warehouse'])) \
+    .reset_index(drop=True)
+
+# Aggregate the data and add the availability details as a tooltip column
+product_data = filtered_df.groupby('Product').agg({
+    'Volume': 'sum',
+    'Availability': 'sum',
+    'Availability_Detail': lambda x: '; '.join(x)
+}).reset_index()
+
 
 
 # Define restock number
