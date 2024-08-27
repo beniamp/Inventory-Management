@@ -216,7 +216,7 @@ st.markdown("""
 
 
 detailed_view = product_data.groupby('Product').agg({'TotalVolume': 'max', 'MaxAvailability': 'sum'}).reset_index()
-st.write(product_data.column)
+st.write(product_data.columns)
 # Create a search bar
 search_query = st.text_input("Search for a Product", "")
 if search_query:
