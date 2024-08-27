@@ -218,8 +218,6 @@ st.markdown("""
 
 detailed_view = filtered_df[['Product', 'Warehouse', 'Availability']]
 detailed_view = filtered_df.groupby(['Product', 'Warehouse'])['Availability'].sum()
-
-st.write(product_data_s.columns)
 # Create a search bar
 search_query = st.text_input("Search for a Product", "")
 if search_query:
