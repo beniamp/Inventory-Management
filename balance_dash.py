@@ -203,7 +203,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("موجودی صفر / سفارش بالا ")
-product_brown1 = product_data[product_data['ActionStatus'] == 'Brown Type 1'].reset_index()
+product_brown1 = product_data[product_data['ActionStatus'] == 'Brown Type 1'].reset_index(drop=True)
 st.write(product_brown1)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 1'].shape[0]}")
 
