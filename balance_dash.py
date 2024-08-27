@@ -10,6 +10,13 @@ df_orders = pd.read_csv('Orders.csv')
 df_orders = df_orders[['ProductNameColor', 'Quantity', 'ColorName', 'Date_Formatted', 'Category']]
 df_stocks = pd.read_csv('Stocks.csv')
 
+# Page setting
+st.set_page_config(layout="wide")
+
+# Load custom CSS
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 # Inject custom CSS to style the select box
 st.markdown("""
     <style>
