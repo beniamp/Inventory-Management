@@ -136,7 +136,7 @@ df8 = merged_df[(merged_df['Date_Formatted'].isna()) & (merged_df['Quantity_stoc
 
 # Replace values based on the given conditions
 df8['Quantity'] = df8['Quantity'].fillna(0)
-df8 = df8[['ProductColorName', 'Quantity', 'Quantity_stock']]
+df8 = df8[['ProductColorName', 'Quantity', 'Quantity_stock']].reset_index(drop=True)
 df8 = df8.rename(columns={'Quantity': 'TotalVolume', 'Quantity_stock': 'MaxAvailability'})
 
 # Calculate maximum availability for each product considering the warehouse
@@ -213,7 +213,8 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("موجود کردن در اولین فرصت")
-st.write(product_data[product_data['ActionStatus'] == 'Red'])
+product_red = product_data[product_data['ActionStatus'] == 'Red'].reset_index(drop=True)
+st.write(product_red)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Red'].shape[0]}")
 
 st.markdown("""
@@ -222,7 +223,8 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("برنامه ریزی برای موجود کردن کالا")
-st.write(product_data[product_data['ActionStatus'] == 'Yellow'])
+product_yellow = product_data[product_data['ActionStatus'] == 'Yellow'].reset_index(drop=True)
+st.write(product_yellow)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Yellow'].shape[0]}")
 
 st.markdown("""
@@ -231,6 +233,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("حاشیه نسبتا امن موجودی کنونی")
+product_green = product_data[product_data['ActionStatus'] == 'Green'].reset_index(drop=True)
 st.write(product_data[product_data['ActionStatus'] == 'Green'])
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Green'].shape[0]}")
 
@@ -240,7 +243,8 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("کالاهای مریض")
-st.write(product_data[product_data['ActionStatus'] == 'Grey'])
+product_grey = product_data[product_data['ActionStatus'] == 'Grey'].reset_index(drop=True)
+st.write(product_grey)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Grey'].shape[0]}")
 
 st.markdown("""
@@ -249,7 +253,8 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("(فروش کم) موجودی بیش از میزان تقاضا")
-st.write(product_data[product_data['ActionStatus'] == 'Brown Type 2'])
+prdocut_brown2 = product_data[product_data['ActionStatus'] == 'Brown Type 2'].reset_index(drop=True)
+st.write(prdocut_brown2)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 2'].shape[0]}")
 
 st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
