@@ -158,7 +158,6 @@ if selected_warehouse == 'All options':
     product_data = product_data.groupby('Product').agg({'TotalVolume': 'sum', 'MaxAvailability': 'sum'}).reset_index()
 
 
-
 #product_data = product_data[['Product', 'Warehouse_y', 'TotalVolume', 'MaxAvailability']]
 
 
@@ -217,6 +216,17 @@ st.markdown("""
         💩
     </div>
 """, unsafe_allow_html=True)
+
+
+# Display the product data with availability tooltips
+st.write("Product Data with Availability Details:")
+st.table(product_data.style.set_tooltips(
+    product_data['Availability_Detail'],
+    subset=['Availability'],
+    tooltip_na_rep='No data'
+))
+
+
 st.write("موجودی صفر / سفارش بالا ")
 product_brown1 = product_data[product_data['ActionStatus'] == 'Brown Type 1'].reset_index(drop=True)
 st.write(product_brown1)
