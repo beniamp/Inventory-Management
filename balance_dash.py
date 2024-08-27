@@ -158,20 +158,6 @@ if selected_warehouse == 'All options':
     product_data = product_data.groupby('Product').agg({'TotalVolume': 'sum', 'MaxAvailability': 'sum'}).reset_index()
 
 
-#product_data = product_data[['Product', 'Warehouse_y', 'TotalVolume', 'MaxAvailability']]
-# Group by Product and Warehouse, and create a string of availability details
-df['Availability_Detail'] = df.groupby(['Product', 'Warehouse'])['Availability'] \
-    .apply(lambda x: ', '.join(x.astype(str) + ' in ' + df['Warehouse'])) \
-    .reset_index(drop=True)
-
-# Aggregate the data and add the availability details as a tooltip column
-product_data = filtered_df.groupby('Product').agg({
-    'Volume': 'sum',
-    'Availability': 'sum',
-    'Availability_Detail': lambda x: '; '.join(x)
-}).reset_index()
-
-
 
 # Define restock number
 restock_number = 2
@@ -230,13 +216,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# Display the product data with availability tooltips
-st.write("Product Data with Availability Details:")
-st.table(product_data.style.set_tooltips(
-    product_data['Availability_Detail'],
-    subset=['Availability'],
-    tooltip_na_rep='No data'
-))
+detailed_view = filtered_df[['Product', 'Warehouse', 'Availability']]
+
+for product in product_data['Product']:
+    with st.expander(f"View details for {product}"):
+        st.write(detailed_view[detailed_view['Product'] == product])
 
 
 st.write("موجودی صفر / سفارش بالا ")
