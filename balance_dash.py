@@ -156,7 +156,7 @@ product_data = pd.merge(product_total_volume, product_max_availability, on=['Pro
 # If "All options" is selected, aggregate across all warehouses
 if selected_warehouse == 'All options':
     product_data = product_data.groupby('Product').agg({'TotalVolume': 'sum', 'MaxAvailability': 'sum'}).reset_index()
-    product_data_s = product_data.groupby(['Product', 'Warehouse']).agg({'TotalVolume': 'sum', 'MaxAvailability': 'sum'}).reset_index()
+    product_data_s = product_data.groupby(['Product', 'Warehouse_y']).agg({'TotalVolume': 'sum', 'MaxAvailability': 'sum'}).reset_index()
 
 
 
