@@ -100,7 +100,7 @@ if selected_category != 'All Categories':
 else:
     brands = ['All Brands'] + df['Brand'].unique().tolist()
 
-selected_brand = st.selectbox('Select Brand', brands)
+selected_brand = st.multiselect('Select Brand', brands)
 
 # Filter DataFrame by selected brand
 if selected_brand != 'All Brands':
