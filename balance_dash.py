@@ -158,6 +158,8 @@ if selected_warehouse == 'All options':
     product_data = product_data.groupby('Product').agg({'TotalVolume': 'sum', 'MaxAvailability': 'sum'}).reset_index()
 
 
+product_data['Details_Available'] = product_data['Availability_Detail'].apply(lambda x: '🔍' if x else '')
+
 
 # Define restock number
 restock_number = 2
@@ -216,11 +218,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-detailed_view = filtered_df[['Product', 'Warehouse', 'Availability']]
 
-for product in product_data['Product']:
-    with st.expander(f"View details for {product}"):
-        st.write(detailed_view[detailed_view['Product'] == product])
+for i, row in product_data.iterrows():
+    st.write(f"{row['Product']} {row['Details_Available']}")
+    if row['Details_Available']:
+        with st.expander(f"Availability details for {row['Product']}"):
+            st.write(detailed_view[detailed_view['Product'] == row['Product']])
 
 
 st.write("موجودی صفر / سفارش بالا ")
