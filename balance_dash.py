@@ -192,7 +192,7 @@ product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=
 product_data['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data['Order_Rate'])
 
 # drill down through each warehouse values
-detailed_view = filtered_df.groupby(['Product', 'Warehouse'])['Availability'].max().reset_index()
+detailed_view = filtered_df.groupby(['Product', 'Warehouse'])['Availability'].max().reset_index(drop=True)
 
 # Create a search bar
 search_query = st.text_input("Search for a Product", "")
