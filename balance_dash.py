@@ -103,9 +103,9 @@ if selected_category != 'All Categories':
 
 # Brand filter with 'All Brands' option
 if selected_category != 'All Categories':
-    brands = ['All Brands'] + filtered_df['Brand'].unique().tolist()
+    brands = filtered_df['Brand'].unique().tolist()
 else:
-    brands = ['All Brands'] + df['Brand'].unique().tolist()
+    brands = df['Brand'].unique().tolist()
 
 selected_brands = st.multiselect('Select Brand', brands, default=brands)
 
