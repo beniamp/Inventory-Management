@@ -197,6 +197,7 @@ st.markdown("""
     .box-green { background-color: #1aba47; }
     .box-grey { background-color: #d6d6d6; }
     .box-brown2 { background-color: #cc7700; }
+    .box-dark {background-color: #131642; }
     </style>
     <div class="custom-box box-brown">
         💩
@@ -257,6 +258,11 @@ prdocut_brown2 = product_data[product_data['ActionStatus'] == 'Brown Type 2'].re
 st.write(prdocut_brown2)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 2'].shape[0]}")
 
+st.markdown("""
+    <div class="custom-box box-dark">
+        ☠️ 
+    </div>
+""", unsafe_allow_html=True)
 st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
 st.write(df8)
 st.caption(f"Number of Products: {df8.shape[0]}")
