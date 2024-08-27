@@ -125,6 +125,7 @@ if 'All Brands' not in selected_brands:
 st.success(f"**Total products in selected filters:** {filtered_df.shape[0]}")
 
 
+
 # Aggregating stock data by Name, Category, Brand, Warehouse
 agg_stock = df_stocks.groupby(['ProductColorName', 'Category', 'Brand', 'Color', 'Warehouse'], as_index=False).agg({'Quantity': 'sum'}).rename(columns={
     'Quantity': 'Quantity_stock',
@@ -190,6 +191,24 @@ def determine_action_status(row):
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
 product_data['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data['Order_Rate'])
 
+# drill down through each warehouse values
+detailed_view = filtered_df.groupby(['Product', 'Warehouse'])['Availability'].max().reset_index()
+
+# Create a search bar
+search_query = st.text_input("Search for a Product", "")
+if search_query:
+    filtered_detailed_view = detailed_view[detailed_view['Product'].str.contains(search_query, case=False)]
+    
+    # Display a message if no products are found
+    if filtered_detailed_view.empty:
+        st.warning(f"No products found matching '{search_query}'.")
+    else:
+        # Display the detailed view for the searched product
+        st.write(f"Details of warehouse for products matching: '{search_query}'")
+        st.write(filtered_detailed_view)
+
+
+
 # Display various filtered and calculated data
 st.markdown("""
     <style>
@@ -214,22 +233,6 @@ st.markdown("""
         💩
     </div>
 """, unsafe_allow_html=True)
-
-
-detailed_view = filtered_df.groupby(['Product', 'Warehouse'])['Availability'].max().reset_index()
-
-# Create a search bar
-search_query = st.text_input("Search for a Product", "")
-if search_query:
-    filtered_detailed_view = detailed_view[detailed_view['Product'].str.contains(search_query, case=False)]
-    
-    # Display a message if no products are found
-    if filtered_detailed_view.empty:
-        st.warning(f"No products found matching '{search_query}'.")
-    else:
-        # Display the detailed view for the searched product
-        st.write(f"Details for products matching '{search_query}':")
-        st.write(filtered_detailed_view)
 
 
 st.write("موجودی صفر / سفارش بالا ")
