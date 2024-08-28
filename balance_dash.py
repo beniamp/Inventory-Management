@@ -211,7 +211,7 @@ st.markdown("""
     <style>
     .custom-box {
         padding: 20px;
-        border-radius: 8px;
+        border-radius: 5px;
         font-weight: bold;
         text-align: center;
         font-size: 18px;
@@ -224,12 +224,6 @@ st.markdown("""
     .box-green { background-color: #1aba47; }
     .box-grey { background-color: #d6d6d6; }
     .box-brown2 { background-color: #cc7700; }
-    .box-dark { background-color: #2f2959; }
-
-    /* Make dataframes take the full width */
-    .css-1d391kg .stDataFrame {
-        width: 100% !important;
-    }
     </style>
     <div class="custom-box box-brown">
         💩
