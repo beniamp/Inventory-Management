@@ -192,11 +192,11 @@ def determine_action_status(row):
     restock_point = row['Restock_Ratio']
     stock = row['MaxAvailability']
     
-    if selected_category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 1.5:
+    if Category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 1.5:
         return "Red"
-    elif selected_category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 3: 
+    elif Category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 3: 
         return "Yellow"
-    elif selected_category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 7:
+    elif Category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 7:
         return "Green"
     
         
