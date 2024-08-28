@@ -208,7 +208,7 @@ def determine_action_status(product_data):
         else:
             return 'Grey'        
 
-    if selected_category in ['ساعت هوشمند', 'هدفون و هندزفری'] and selected_brand in ['اپل', 'سامسونگ']:
+    if selected_category in ['ساعت هوشمند', 'هدفون و هندزفری'] and selected_brands in ['اپل', 'سامسونگ']:
         if restock_point > 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) == 0:
             return "Brown Type 1"
         elif 1 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 3:
