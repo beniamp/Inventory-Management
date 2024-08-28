@@ -226,15 +226,9 @@ st.markdown("""
     .box-brown2 { background-color: #cc7700; }
     .box-dark { background-color: #2f2959; }
 
-    /* Make tables take the full width */
-    .css-1d391kg .stTable, .css-1d391kg .stDataFrame {
+    /* Make dataframes take the full width */
+    .css-1d391kg .stDataFrame {
         width: 100% !important;
-    }
-
-    /* Optionally adjust padding and margins if necessary */
-    .stTable {
-        margin-left: 0 !important;
-        margin-right: 0 !important;
     }
     </style>
     <div class="custom-box box-brown">
@@ -306,4 +300,11 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
 st.table(df8)
+csv = df8.to_csv(index=False)
+st.download_button(
+    label="Download data as CSV",
+    data=csv,
+    file_name='sample_data.csv',
+    mime='text/csv',
+)
 st.caption(f"Number of Products: {df8.shape[0]}")
