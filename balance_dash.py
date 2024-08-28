@@ -202,7 +202,7 @@ if search_query:
     else:
         # Display the detailed view for the searched product
         st.write(f"Details of warehouse for products matching: '{search_query}'")
-        st.write(filtered_detailed_view)
+        st.dataframe(filtered_detailed_view)
 
 
 
