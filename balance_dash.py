@@ -187,20 +187,24 @@ product_data['Order_Rate'] = product_data['TotalVolume'] / count_dates
 # Calculate Stock Ratio
 product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAvailability'].replace(0, 0.1)
 
-# Function to determine action status based on restock point
 def determine_action_status(row):
     # Calculate the days remaining based on the row's values
-    days_remaining = round(row['MaxAvailability'] / row['Order_Rate'])
+    try:
+        days_remaining = round(row['MaxAvailability'] / row['Order_Rate'], 2)  # Round to two decimal places for accuracy
+    except ZeroDivisionError:
+        return "Grey"  # Handle the case where Order_Rate is zero
+    
+    # Debugging: Print or log the key variables to see what's happening
+    print(f"Product: {row['Product']}, Days Remaining: {days_remaining}")
 
     # Apply conditions based on the category and calculated days remaining
     if selected_category == 'گوشی موبایل':
         if days_remaining < 1.5:
             return "Red"
-        elif days_remaining < 3:
+        elif 1.5 <= days_remaining < 3:
             return "Yellow"
-        elif days_remaining < 7:
+        elif 3 <= days_remaining < 7:
             return "Green"
-    # Add a return value for cases where none of the conditions are met
     return "Grey"
     
         
@@ -209,6 +213,7 @@ def determine_action_status(row):
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
 product_data['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data['Order_Rate'])
+
 
 # drill down through each warehouse values
 detailed_view = filtered_df.groupby(['Product', 'Warehouse'])['Availability'].max().reset_index()
