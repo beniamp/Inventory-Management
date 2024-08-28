@@ -192,19 +192,20 @@ product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAv
 def determine_action_status(product_data):
     restock_point = product_data['Restock_Ratio']
     stock = product_data['MaxAvailability']
-    
-    if restock_point > 1:
-        return "Brown Type 1"
-    elif 0.05 < restock_point <= 1 and stock != 0:
-        return "Red"
-    elif 0.01 < restock_point <= 0.05 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30:
-        return "Yellow"
-    elif 0.01 < restock_point <= 0.05 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 30:
-        return 'Green'
-    elif 0.001 < restock_point < 0.01 or round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 90:
-        return "Brown Type 2"
-    else:
-        return 'Grey'        
+
+    if selected_category == 'گوشی موبایل':
+        if restock_point > 1:
+            return "Brown Type 1"
+        elif 0.05 < restock_point <= 1 and stock != 0:
+            return "Red"
+        elif 0.01 < restock_point <= 0.05 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30:
+            return "Yellow"
+        elif 0.01 < restock_point <= 0.05 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 30:
+            return 'Green'
+        elif 0.001 < restock_point < 0.01 or round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 90:
+            return "Brown Type 2"
+        else:
+            return 'Grey'        
 
 
 # Apply the function to determine action status
