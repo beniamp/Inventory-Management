@@ -197,13 +197,13 @@ def determine_action_status(product_data):
     if selected_category in ['کنسول بازی', 'تبلت', 'گوشی موبایل', ' گوشی موبایل', 'گوشی موبایل ']:
         if restock_point > 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) == 0:
             return "Brown Type 1"
-        elif 1 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 2:
+        elif 1 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 3:
             return "Red"
-        elif 2 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 3:
-            return "Yellow"
         elif 3 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 7:
+            return "Yellow"
+        elif 7 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 15:
             return 'Green'
-        elif 7 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']):
+        elif 15 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']):
             return "Brown Type 2"
         else:
             return 'Grey'        
