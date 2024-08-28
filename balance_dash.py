@@ -113,7 +113,7 @@ else:
 
 
 # Category filter with 'All Categories' option
-df['Category'] = df['Category'].replace('گوشی موبایل ', 'گوشی موبایل')
+df['Category'] = df['Category'].replace('گوشی موبایل', 'گوشی موبایل ')
 categories = ['All Categories'] + df['Category'].unique().tolist()
 selected_category = st.selectbox('Select Category', categories)
 
