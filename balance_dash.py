@@ -262,7 +262,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("موجود کردن در اولین فرصت")
 product_red = product_data[product_data['ActionStatus'] == 'Red'].reset_index(drop=True)
-st.write(product_red)
+st.dataframe(product_red)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Red'].shape[0]}")
 
 st.markdown("""
@@ -272,7 +272,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("برنامه ریزی برای موجود کردن کالا")
 product_yellow = product_data[product_data['ActionStatus'] == 'Yellow'].reset_index(drop=True)
-st.write(product_yellow)
+st.dataframe(product_yellow)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Yellow'].shape[0]}")
 
 st.markdown("""
@@ -311,6 +311,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
-st.da3taframe(df8)
-
+st.dataframe(df8)
 st.caption(f"Number of Products: {df8.shape[0]}")
+
+
