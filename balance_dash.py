@@ -252,7 +252,7 @@ st.markdown("""
 
 st.write("موجودی صفر / سفارش بالا ")
 product_brown1 = product_data[product_data['ActionStatus'] == 'Brown Type 1'].reset_index(drop=True)
-st.dataframe(product_brown1)
+st.DataFrame(product_brown1)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 1'].shape[0]}")
 
 st.markdown("""
