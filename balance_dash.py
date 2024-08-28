@@ -194,7 +194,7 @@ def determine_action_status(product_data):
     stock = product_data['MaxAvailability']
 
     if selected_category in ['کنسول بازی', 'تبلت', 'گوشی موبایل']:
-        if restock_point > 1:
+        if restock_point > 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) == 0:
             return "Brown Type 1"
         elif 1 < round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 2:
             return "Red"
