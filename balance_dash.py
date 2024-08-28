@@ -36,11 +36,18 @@ st.markdown("""
     .box-green { background-color: #1aba47; }
     .box-grey { background-color: #d6d6d6; }
     .box-brown2 { background-color: #cc7700; }
-    .box-dark {background-color: #131642; }
+    .box-dark { background-color: #2f2959; }
+
+    /* Make tables displayed by st.write() take the full width */
+    table {
+        width: 100% !important;
+    }
+
+    /* Optionally adjust padding and margins if necessary */
+    th, td {
+        padding: 10px; /* Adjust padding for table cells */
+    }
     </style>
-    <div class="custom-box box-brown">
-        💩
-    </div>
 """, unsafe_allow_html=True)
 
 
