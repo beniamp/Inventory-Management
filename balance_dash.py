@@ -196,7 +196,7 @@ def determine_action_status(product_data):
     if selected_category == 'کنسول بازی':
         if restock_point > 1:
             return "Brown Type 1"
-        elif round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 2:
+        elif 1 < round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 2:
             return "Red"
         elif 0.01 < restock_point <= 0.05 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30:
             return "Yellow"
