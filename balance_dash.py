@@ -222,6 +222,33 @@ def determine_action_status(product_data):
         else:
             return 'Grey'  
 
+    elif selected_category in ['لپ تاپ']:
+        if restock_point > 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) == 0:
+            return "Brown Type 1"
+        elif 1 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 6:
+            return "Red"
+        elif 6 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 8:
+            return "Yellow"
+        elif 8 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 21:
+            return 'Green'
+        elif 21 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']):
+            return "Brown Type 2"
+        else:
+            return 'Grey'  
+    else:
+        if restock_point > 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) == 0:
+            return "Brown Type 1"
+        elif 1 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 10:
+            return "Red"
+        elif 10 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 15:
+            return "Yellow"
+        elif 15 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30:
+            return 'Green'
+        elif 30 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']):
+            return "Brown Type 2"
+        else:
+            return 'Grey'  
+
 
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
