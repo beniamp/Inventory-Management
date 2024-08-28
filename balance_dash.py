@@ -230,7 +230,7 @@ if search_query:
         st.dataframe(filtered_detailed_view)
 
 
-
+st.dataframe(product_data)
 # Display various filtered and calculated data
 st.markdown("""
     <style>
