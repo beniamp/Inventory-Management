@@ -224,10 +224,18 @@ st.markdown("""
     .box-green { background-color: #1aba47; }
     .box-grey { background-color: #d6d6d6; }
     .box-brown2 { background-color: #cc7700; }
-    .box-dark {background-color: #2f2959; }
-    
+    .box-dark { background-color: #2f2959; }
+
     /* Make tables take the full width */
-    .css-1d391kg .stDataFrame { width: 100% !important; }
+    .css-1d391kg .stTable, .css-1d391kg .stDataFrame {
+        width: 100% !important;
+    }
+
+    /* Optionally adjust padding and margins if necessary */
+    .stTable {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
     </style>
     <div class="custom-box box-brown">
         💩
@@ -235,9 +243,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+
 st.write("موجودی صفر / سفارش بالا ")
 product_brown1 = product_data[product_data['ActionStatus'] == 'Brown Type 1'].reset_index(drop=True)
-st.dataframe(product_brown1)
+st.table(product_brown1)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 1'].shape[0]}")
 
 st.markdown("""
@@ -296,5 +305,5 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
-st.dataframe(df8)
+st.table(df8)
 st.caption(f"Number of Products: {df8.shape[0]}")
