@@ -18,20 +18,31 @@ with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 # Inject custom CSS to style the select box
+# Display various filtered and calculated data
 st.markdown("""
     <style>
-    .stSelectbox > div > div > div > div:first-child:hover {
-        background-color: #e8ffe8;  /* Light green background on hover */
-    }
-    .stSelectbox > div > div > div > div:first-child:focus-within {
-        border-color: #66bb6a;  /* Darker green border on focus */
-    }
-    .stSelectbox > div > div > div > div:first-child > div {
-        color: #4CAF50;  /* Green text */
+    .custom-box {
+        padding: 20px;
+        border-radius: 8px;
         font-weight: bold;
+        text-align: center;
+        font-size: 18px;
+        color: #ffffff; /* White text color */
+        margin-bottom: 10px; /* Space between the box and table */
     }
+    .box-brown { background-color: #803400; }
+    .box-red { background-color: #db2c12; }
+    .box-yellow { background-color: #fae525; }
+    .box-green { background-color: #1aba47; }
+    .box-grey { background-color: #d6d6d6; }
+    .box-brown2 { background-color: #cc7700; }
+    .box-dark {background-color: #131642; }
     </style>
+    <div class="custom-box box-brown">
+        💩
+    </div>
 """, unsafe_allow_html=True)
+
 
 # Replace null dates with a placeholder in both DataFrames
 df['Date'] = df['Date'].fillna('0000-00-00')
