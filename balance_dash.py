@@ -189,15 +189,19 @@ product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAv
 
 # Function to determine action status based on restock point
 def determine_action_status(row):
-    restock_point = row['Restock_Ratio']
-    stock = row['MaxAvailability']
-    
-    if Category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 1.5:
-        return "Red"
-    elif Category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 3: 
-        return "Yellow"
-    elif Category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 7:
-        return "Green"
+    # Calculate the days remaining based on the row's values
+    days_remaining = round(row['MaxAvailability'] / row['Order_Rate'])
+
+    # Apply conditions based on the category and calculated days remaining
+    if selected_category == 'گوشی موبایل':
+        if days_remaining < 1.5:
+            return "Red"
+        elif days_remaining < 3:
+            return "Yellow"
+        elif days_remaining < 7:
+            return "Green"
+    # Add a return value for cases where none of the conditions are met
+    return "Grey"
     
         
 
