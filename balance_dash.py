@@ -258,8 +258,13 @@ def determine_action_status(product_data, selected_category, selected_brands):
 
 
 # Apply the function to determine action status
-product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
-product_data['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data['Order_Rate'])
+# Apply the function to determine action status
+product_data['ActionStatus'] = product_data.apply(
+    lambda row: determine_action_status(row, selected_category, selected_brands),
+    axis=1
+)
+
+product_data['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data['Order_Rate'], 2)
 
 
 # drill down through each warehouse values
