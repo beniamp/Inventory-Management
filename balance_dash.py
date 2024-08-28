@@ -252,7 +252,7 @@ st.markdown("""
 
 st.write("موجودی صفر / سفارش بالا ")
 product_brown1 = product_data[product_data['ActionStatus'] == 'Brown Type 1'].reset_index(drop=True)
-st.write(product_brown1)
+st.dataframe(product_brown1)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 1'].shape[0]}")
 
 st.markdown("""
@@ -282,7 +282,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("حاشیه نسبتا امن موجودی کنونی")
 product_green = product_data[product_data['ActionStatus'] == 'Green'].reset_index(drop=True)
-st.write(product_data[product_data['ActionStatus'] == 'Green'])
+st.dataframe(product_data[product_data['ActionStatus'] == 'Green'])
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Green'].shape[0]}")
 
 st.markdown("""
@@ -292,7 +292,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("کالاهای مریض")
 product_grey = product_data[product_data['ActionStatus'] == 'Grey'].reset_index(drop=True)
-st.write(product_grey)
+st.dataframe(product_grey)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Grey'].shape[0]}")
 
 st.markdown("""
@@ -302,7 +302,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 st.write("(فروش کم) موجودی بیش از میزان تقاضا")
 prdocut_brown2 = product_data[product_data['ActionStatus'] == 'Brown Type 2'].reset_index(drop=True)
-st.write(prdocut_brown2)
+st.dataframe(prdocut_brown2)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 2'].shape[0]}")
 
 st.markdown("""
@@ -311,7 +311,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
-st.write(df8)
+st.dataframe(df8)
 st.caption(f"Number of Products: {df8.shape[0]}")
 
 
