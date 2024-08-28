@@ -311,6 +311,6 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
-st.write(df8)
+st.dataframe(df8)
 
 st.caption(f"Number of Products: {df8.shape[0]}")
