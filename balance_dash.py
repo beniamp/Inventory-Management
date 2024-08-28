@@ -199,7 +199,7 @@ def determine_action_status(row):
 
     # Apply conditions based on the category and calculated days remaining
     if selected_category == 'گوشی موبایل':
-        if days_remaining ==0 
+        if days_remaining == 0:
             return "Brown Type 1"
         elif days_remaining < 1.5:
             return "Red"
