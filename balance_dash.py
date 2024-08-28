@@ -208,6 +208,20 @@ def determine_action_status(product_data):
         else:
             return 'Grey'        
 
+    if selected_category in ['ساعت هوشمند', 'هدفون و هندزفری'] and selected_brand in ['اپل', 'سامسونگ']:
+        if restock_point > 0.1 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) == 0:
+            return "Brown Type 1"
+        elif 1 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 3:
+            return "Red"
+        elif 3 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 7:
+            return "Yellow"
+        elif 7 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 15:
+            return 'Green'
+        elif 15 <= round(product_data['MaxAvailability'] / product_data['Order_Rate']):
+            return "Brown Type 2"
+        else:
+            return 'Grey'  
+
 
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
