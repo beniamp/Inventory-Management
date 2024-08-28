@@ -304,12 +304,6 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
-st.table(df8)
-csv = df8.to_csv(index=False)
-st.download_button(
-    label="Download data as CSV",
-    data=csv,
-    file_name='sample_data.csv',
-    mime='text/csv',
-)
+st.write(df8)
+
 st.caption(f"Number of Products: {df8.shape[0]}")
