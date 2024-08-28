@@ -193,16 +193,16 @@ def determine_action_status(product_data):
     restock_point = product_data['Restock_Ratio']
     stock = product_data['MaxAvailability']
 
-    if selected_category == 'کنسول بازی':
+    if selected_category in ['کنسول بازی', 'تبلت', 'گوشی موبایل']:
         if restock_point > 1:
             return "Brown Type 1"
         elif 1 < round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 2:
             return "Red"
-        elif 0.01 < restock_point <= 0.05 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 30:
+        elif 2 < round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 3:
             return "Yellow"
-        elif 0.01 < restock_point <= 0.05 and round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 30:
+        elif 3 < round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 7:
             return 'Green'
-        elif 0.001 < restock_point < 0.01 or round(product_data['MaxAvailability'] / product_data['Order_Rate']) > 90:
+        elif 7 < round(product_data['MaxAvailability'] / product_data['Order_Rate']):
             return "Brown Type 2"
         else:
             return 'Grey'        
