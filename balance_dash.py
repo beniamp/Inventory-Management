@@ -252,7 +252,7 @@ st.markdown("""
 
 st.write("موجودی صفر / سفارش بالا ")
 product_brown1 = product_data[product_data['ActionStatus'] == 'Brown Type 1'].reset_index(drop=True)
-st.dataframe(product_brown1)
+st.write(product_brown1)
 st.caption(f"Number of Products: {product_data[product_data['ActionStatus'] == 'Brown Type 1'].shape[0]}")
 
 st.markdown("""
@@ -311,7 +311,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 st.write("(فروش صفر) موجودی بیش از میزان تقاضا")
-st.dataframe(df8)
+st.write(df8)
 st.caption(f"Number of Products: {df8.shape[0]}")
 
 
