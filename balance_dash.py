@@ -174,18 +174,15 @@ def determine_action_status(row):
     restock_point = row['Restock_Ratio']
     stock = row['MaxAvailability']
     
-    if restock_point > 1 and stock == 0:
-        return "Brown Type 1"
-    elif 0.05 < restock_point and stock != 0 and round(stock / row['Order_Rate']) < 10:
+    if selected_category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 1.5:
         return "Red"
-    elif 0.01 < restock_point <= 1 and stock != 0 and round(stock / row['Order_Rate']) < 30:
+    elif selected_category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 3: 
         return "Yellow"
-    elif 0.01 < restock_point <= 0.05 and round(stock / row['Order_Rate']) > 30:
-        return 'Green'
-    elif 0.001 < restock_point < 0.01 or round(stock / row['Order_Rate']) > 90:
-        return "Brown Type 2"
-    else:
-        return 'Grey'
+    elif selected_category == 'گوشی موبایل' and round(product_data['MaxAvailability'] / product_data['Order_Rate']) < 7:
+        return "Green"
+    
+        
+
 
 # Apply the function to determine action status
 product_data['ActionStatus'] = product_data.apply(determine_action_status, axis=1)
@@ -227,7 +224,7 @@ st.markdown("""
     .box-green { background-color: #1aba47; }
     .box-grey { background-color: #d6d6d6; }
     .box-brown2 { background-color: #cc7700; }
-    .box-dark {background-color: #131642; }
+    .box-dark {background-color: #2f2959; }
     </style>
     <div class="custom-box box-brown">
         💩
