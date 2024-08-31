@@ -264,7 +264,7 @@ product_data['ActionStatus'] = product_data.apply(
     axis=1
 )
 
-product_data['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data['Order_Rate'])
+product_data['DaysRemaining'] = round(product_data['MaxAvailability'] / product_data['Order_Rate'], 2)
 
 
 # drill down through each warehouse values
