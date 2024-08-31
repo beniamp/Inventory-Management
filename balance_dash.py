@@ -193,7 +193,7 @@ product_data['Restock_Ratio'] = product_data['Order_Rate'] / product_data['MaxAv
 def determine_action_status(product_data, selected_category, selected_brands):
     restock_point = product_data['Restock_Ratio']
     stock = product_data['MaxAvailability']
-    days_remaining = round(product_data['MaxAvailability'] / product_data['Order_Rate'])
+    days_remaining = round(product_data['MaxAvailability'] / product_data['Order_Rate'], 2)
 
     # Define category-specific logic
     if selected_category in ['کنسول بازی', 'تبلت', 'گوشی موبایل', ' گوشی موبایل', 'گوشی موبایل ']:
