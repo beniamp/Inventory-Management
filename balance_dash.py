@@ -215,7 +215,7 @@ def determine_action_status(product_data, selected_category, selected_brands):
         if any(brand in selected_brands for brand in ['اپل', 'سامسونگ']):
             if restock_point > 0.1 and days_remaining == 0:
                 return "Brown Type 1"
-            elif 1 <= days_remaining < 3:
+            elif 0.01 <= days_remaining < 3:
                 return "Red"
             elif 3 <= days_remaining < 7:
                 return "Yellow"
@@ -231,7 +231,7 @@ def determine_action_status(product_data, selected_category, selected_brands):
     elif selected_category == 'لپ تاپ':
         if restock_point > 0.1 and days_remaining == 0:
             return "Brown Type 1"
-        elif 1 <= days_remaining < 6:
+        elif 0.01 <= days_remaining < 6:
             return "Red"
         elif 6 <= days_remaining < 8:
             return "Yellow"
@@ -244,7 +244,7 @@ def determine_action_status(product_data, selected_category, selected_brands):
     else:
         if restock_point > 0.1 and days_remaining == 0:
             return "Brown Type 1"
-        elif 1 <= days_remaining < 10:
+        elif 0.01 <= days_remaining < 10:
             return "Red"
         elif 10 <= days_remaining < 15:
             return "Yellow"
