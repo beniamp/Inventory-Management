@@ -308,7 +308,8 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-
+st.write("تمام محصولات")
+st.dataframe(product_data)
 
 st.write("موجودی صفر / سفارش بالا ")
 product_brown1 = product_data[product_data['ActionStatus'] == 'Brown Type 1'].reset_index(drop=True)
