@@ -283,6 +283,8 @@ if search_query:
         st.write(f"Details of warehouse for products matching: '{search_query}'")
         st.dataframe(filtered_detailed_view)
 
+st.write("تمام محصولات")
+st.dataframe(product_data)
 
 # Display various filtered and calculated data
 st.markdown("""
@@ -308,8 +310,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True)
 
-st.write("تمام محصولات")
-st.dataframe(product_data)
+
 
 st.write("موجودی صفر / سفارش بالا ")
 product_brown1 = product_data[product_data['ActionStatus'] == 'Brown Type 1'].reset_index(drop=True)
