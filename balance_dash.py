@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 
 # Reading data from CSV files
 df = pd.read_csv('BalanceV2.csv')
+print(df)
 df_orders = pd.read_csv('Orders.csv')
 df_orders = df_orders[['ProductNameColor', 'Quantity', 'ColorName', 'Date_Formatted', 'Category']]
 df_stocks = pd.read_csv('Stocks.csv')
