@@ -284,7 +284,7 @@ if search_query:
         st.dataframe(filtered_detailed_view)
 
 st.write("تمام محصولات")
-st.dataframe(df)
+st.dataframe(product_data)
 
 # Display various filtered and calculated data
 st.markdown("""
