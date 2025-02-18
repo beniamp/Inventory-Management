@@ -6,7 +6,6 @@ import plotly.graph_objects as go
 
 # Reading data from CSV files
 df = pd.read_csv('BalanceV2.csv')
-print(df)
 df_orders = pd.read_csv('Orders.csv')
 df_orders = df_orders[['ProductNameColor', 'Quantity', 'ColorName', 'Date_Formatted', 'Category']]
 df_stocks = pd.read_csv('Stocks.csv')
@@ -285,7 +284,7 @@ if search_query:
         st.dataframe(filtered_detailed_view)
 
 st.write("تمام محصولات")
-st.dataframe(product_data)
+st.dataframe(df)
 
 # Display various filtered and calculated data
 st.markdown("""
